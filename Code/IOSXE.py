@@ -516,6 +516,8 @@ while u == "y":
         keywords = keyword.split()
         filtered_result = resfilterout(filtered_result, keywords)
         print(*filtered_result, sep="\n")
+        print("Size of further filtered Output: ", end='')
+        print(len(filtered_result))
         with open("Output\\filtered result.txt", 'w+') as fout:
             for j in filtered_result:
                 fout.write(j)
