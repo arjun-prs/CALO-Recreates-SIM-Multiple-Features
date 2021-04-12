@@ -1,0 +1,187 @@
+Core Area Border Router Configuration
+
+! IGP Configuration
+router isis core-agg
+net 49.0100.1010.0001.0001.00
+address-family ipv4 unicast
+metric-style wide
+propagate level 1 into level 2 route-policy drop-all  ! Disable L1 to L2 redistribution
+!
+interface Loopback0
+ipv4 address 10.10.10.1 255.255.255.255
+passive
+!
+interface TenGigE0/0/0/0                                              
+!
+interface TenGigE0/0/0/1                                             
+circuit-type level-2-only                     ! Core facing ISIS L2 Link
+
+!
+interface TenGigE0/0/0/2                 
+circuit-type level-1                          ! Aggregation facingis ISIS L1 Link
+!
+route-policy drop-all
+drop
+end-policy
+
+! BGP Configuration
+
+router bgp 100
+ibgp policy out enforce-modifications
+bgp router-id 10.10.10.1
+address-family ipv4 unicast
+allocate-label all                            ! Send labels with BGP routes
+!
+session-group infra
+remote-as 100
+cluster-id 1001
+update-source Loopback0
+!
+neighbor-group agg                          
+use session-group infra
+address-family ipv4 labeled-unicast      
+route-reflector-client
+route-policy BGP_Egress_Filter out         ! BGP Community based Egress filtering
+next-hop-self
+!
+neighbor-group mpc
+use session-group infra
+address-family ipv4 labeled-unicast      
+route-reflector-client
+next-hop-self
+!
+neighbor-group core
+use session-group infra                                
+address-family ipv4 labeled-unicast      
+next-hop-self
+
+community-set Allowed-Comm
+200:200,                         
+ 300:300,                           
+!
+route-policy BGP_Egress_Filter
+if community matches-any Allowed-Comm then      
+   pass
+!
+
+Pre-Aggregation Configuration
+
+!
+interface Loopback0
+ipv4 address 10.10.9.9 255.255.255.255
+!
+interface Loopback1
+ipv4 address 10.10.99.9 255.255.255.255
+
+! Pre-Agg IGP Configuration
+
+router isis core-agg
+net 49.0100.1010.0001.9007.00
+is-type level-1                                       !  ISIS L1 router
+metric-style wide
+passive-interface Loopback0                           !  Core-agg IGP loopback0
+
+!RAN Access IGP Configuration
+
+router ospf 1
+router-id 10.10.99.9
+redistribute bgp 100 subnets route-map BGP_to_RAN     !  iBGP to RAN IGP redistribution
+network 10.9.9.2 0.0.0.1 area 0
+network 10.9.9.4 0.0.0.1 area 0
+network 10.10.99.9 0.0.0.0 area 0                
+distribute-list route-map Redist_from_BGP in          !  Inbound filtering to prefer labeled BGP learnt prefixes
+ip community-list standard MPC_Comm permit 200:200
+!
+route-map BGP_to_RAN permit 10                        ! Only redistribute prefixes marked with MPC community
+match community MPC_Comm 
+set tag 1000
+route-map Redist_from_BGP deny 10
+match tag 1000
+!
+route-map Redist_from_BGP permit 20
+!
+! BGP Configuration
+router bgp 100
+ibgp policy out enforce-modifications
+bgp router-id 10.10.9.10
+bgp cluster-id 909
+neighbor csr peer-group
+neighbor csr remote-as 100
+neighbor csr update-source Loopback100                ! Cell Site - Routers RAN IGP loopback100 as source
+neighbor abr peer-group
+neighbor abr remote-as 100
+neighbor abr update-source Loopback0                  ! Core POP ABRs - core-agg IGP loopback0 as source
+neighbor 10.10.10.1 peer-group abr
+neighbor 10.10.10.2 peer-group abr
+neighbor 10.10.13.1 peer-group csr
+!
+address-family ipv4
+bgp redistribute-internal
+network 10.10.9.10 mask 255.255.255.255 route-map AGG_Comm   ! Advertise with Aggregation Community (300:300)
+redistribute ospf 1                                   !  Redistribute RAN IGP prefixes
+neighbor abr send-community
+neighbor abr next-hop-self
+neighbor abr send-label                              !  Send labels with BGP routes
+neighbor 10.10.10.1 activate
+neighbor 10.10.10.2 activate
+exit-address-family
+!
+route-map AGG_Comm permit 10
+set community 300:300
+!
+
+Cell Site Gateway (CSG) Configuration
+
+!
+interface Loopback0
+ip address 10.10.13.2 255.255.255.255
+
+! IGP Configuration
+router ospf 1
+router-id 10.10.13.2
+network 10.9.10.0 0.0.0.1 area 0
+network 10.13.0.0 0.0.255.255 area 0
+network 10.10.13.3 0.0.0.0 area 0                
+
+MTG Configuration
+
+Interface lookback0
+ip address 10.10.11.1 255.255.255.255
+
+! IGP Configuration
+router isis core-agg
+is-type level-2-only                          !  ISIS L2 router
+net 49.0100.1010.0001.1001.00
+address-family ipv4 unicast
+metric-style wide
+
+!BGP Configuration
+router bgp 100
+ibgp policy out enforce-modifications
+bgp router-id 10.10.11.1
+address-family ipv4 unicast
+network 10.10.11.1/32 route-policy MPC_Comm   ! Advertise Loopback-0 with MPC Community
+allocate-label all                            ! Send labels with BGP routes
+!
+session-group infra
+remote-as 100
+update-source Loopback0
+!
+neighbor-group abr
+use session-group infra
+address-family ipv4 labeled-unicast
+next-hop-self
+!
+neighbor 10.10.6.1
+use neighbor-group abr
+!
+neighbor 10.10.12.1
+use neighbor-group abr
+
+community-set MPC_Comm
+200:200
+end-set
+!
+route-policy MPC_Comm
+set community MPC_Comm
+end-policy

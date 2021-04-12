@@ -1,0 +1,7 @@
+router isis core-agg
+net 49.0100.1010.0001.0001.00
+address-family ipv4 unicast
+metric-style wide
+router isis core-agg
+net 49.0100.1010.0001.9007.00
+router isis core-agg

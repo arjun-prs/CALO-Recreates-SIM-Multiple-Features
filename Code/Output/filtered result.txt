@@ -1,0 +1,72 @@
+!
+interface BDI342
+ description # TO-LCKNFZLGESR004-TenGigabitEthernet0/0/10-Fiber #
+ ip address 10.67.117.153 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:67:117:153/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI342
+ description # TO-LCKNFZLGESR004-TenGigabitEthernet0/0/10-Fiber #
+ ip address 10.67.117.153 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:67:117:153/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI342
+ description # TO-LCKNFZLGESR004-TenGigabitEthernet0/0/10-Fiber #
+ ip address 10.67.117.153 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:67:117:153/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd

@@ -1,0 +1,13 @@
+<<<<<<< HEAD
+router eigrp 1
+ network 192.168.10.0
+ network 192.168.20.0
+ network 192.168.30.0
+ 
+=======
+router eigrp 1
+ network 192.168.10.0
+ network 192.168.20.0
+ network 192.168.30.0
+ 
+>>>>>>> 48b3d1c0700c4c6e581ed6f4e7c33a73003d54c4

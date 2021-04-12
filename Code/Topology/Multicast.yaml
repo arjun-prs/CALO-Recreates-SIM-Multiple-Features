@@ -1,0 +1,207 @@
+lab:
+  description: ''
+  notes: ''
+  timestamp: 1616607798.2128756
+  title: Multicast
+  version: 0.0.3
+nodes:
+  - id: n0
+    label: server-0
+    node_definition: server
+    x: -850
+    y: 0
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+    image_definition: server-tcl-8-2-1
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+  - id: n1
+    label: csr1000v-0
+    node_definition: csr1000v
+    x: -350
+    y: -50
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-161101b
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n2
+    label: csr1000v-1
+    node_definition: csr1000v
+    x: -150
+    y: -50
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-161101b
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n3
+    label: csr1000v-2
+    node_definition: csr1000v
+    x: -250
+    y: 50
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-161101b
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n4
+    label: desktop-0
+    node_definition: desktop
+    x: -750
+    y: 0
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      # if you change the hostname then you need to add a
+      # /etc/hosts entry as well to make X11 happy
+      # hostname inserthostname_here
+      # like this:
+      # echo "127.0.0.1   inserthostname_here" >>/etc/hosts
+    image_definition: desktop
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+  - id: n5
+    label: csr1000v-3
+    node_definition: csr1000v
+    x: -550
+    y: -50
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-161101b
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n6
+    label: csr1000v-4
+    node_definition: csr1000v
+    x: -250
+    y: 150
+    configuration: hostname inserthostname_here
+    image_definition: csr1000v-161101b
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+links:
+  - id: l1
+    i1: i2
+    n1: n1
+    i2: i2
+    n2: n2
+  - id: l2
+    i1: i3
+    n1: n1
+    i2: i3
+    n2: n3
+  - id: l3
+    i1: i4
+    n1: n3
+    i2: i4
+    n2: n2
+  - id: l0
+    i1: i1
+    n1: n5
+    i2: i1
+    n2: n1
+  - id: l4
+    i1: i1
+    n1: n6
+    i2: i1
+    n2: n3

@@ -1,0 +1,1 @@
+[{"dest": ["Rendezvous Point", "239.1.1.1),"], "exit": ["GigabitEthernet1,"]}, {"dest": ["Rendezvous Point", "224.0.1.39),"], "exit": ["GigabitEthernet4,", "GigabitEthernet3,", "GigabitEthernet3,", "GigabitEthernet4,"]}]

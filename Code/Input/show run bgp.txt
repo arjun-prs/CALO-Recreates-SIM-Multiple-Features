@@ -1,0 +1,108 @@
+Building configuration...
+
+Current configuration : 1327 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R2
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX152437J4-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 12.0.0.1 255.255.255.0
+!
+interface Loopback2
+ ip address 12.0.1.1 255.255.255.0
+!
+interface Loopback3
+ ip address 12.0.2.1 255.255.255.0
+!
+interface Loopback4
+ ip address 12.0.3.1 255.255.255.0
+!
+interface GigabitEthernet0/0
+ ip address 1.1.1.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 2.2.2.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ ip address 20.1.1.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router bgp 300
+ bgp log-neighbor-changes
+ no synchronization
+ neighbor 1.1.1.1 remote-as 200
+ neighbor 2.2.2.2 remote-as 400
+ network 1.1.1.0 mask 255.255.255.0
+ network 20.1.1.0 mask 255.255.255.0
+ network 2.2.2.0 mask 255.255.255.0
+ network 12.0.0.0 mask 255.255.255.0
+ network 12.0.1.0 mask 255.255.255.0
+ network 12.0.2.0 mask 255.255.255.0
+ network 12.0.3.0 mask 255.255.255.0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
