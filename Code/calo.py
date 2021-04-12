@@ -36,12 +36,24 @@ def exbdiinterface(lines, result, slist) -> list:
     return result
 
 
-def resfilter(result, keyword) -> list:
+def resfilterin(result, keyword) -> list:
     master_result = []
     for lines in result:
         flag = True
         for ele in keyword:
             if not re.search(ele, lines):
+                flag = False
+        if flag:
+            master_result.append(lines)
+    return master_result
+
+
+def resfilterout(result, keyword) -> list:
+    master_result = []
+    for lines in result:
+        flag = True
+        for ele in keyword:
+            if re.search(ele, lines):
                 flag = False
         if flag:
             master_result.append(lines)
@@ -497,9 +509,12 @@ while u == "y":
     print(len(result))
     user_input3 = input("Do you want to filter the result further (y/n): ")
     if user_input3 == "y":
-        keyword = input("Please enter keywords in space seperated format: ")
+        keyword = input("Please enter keywords to include in space seperated format: ")
         keywords = keyword.split()
-        filtered_result = resfilter(result, keywords)
+        filtered_result = resfilterin(result, keywords)
+        keyword = input("Please enter keywords to exclude in space seperated format: ")
+        keywords = keyword.split()
+        filtered_result = resfilterout(filtered_result, keywords)
         print(*filtered_result, sep="\n")
         with open("Output\\filtered result.txt", 'w+') as fout:
             for j in filtered_result:
