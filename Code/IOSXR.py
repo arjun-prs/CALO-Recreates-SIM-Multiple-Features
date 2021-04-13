@@ -269,101 +269,6 @@ def unified_mpls(lines) -> list:
     return result
 
 
-def isis(lines) -> list:
-    count = 0
-    result = []
-    for line in lines:
-        count = count + 1
-        if re.search("isis", line):
-            for lineno in range(count - 1, len(lines)):
-                if re.search("!", lines[lineno]):
-                    break
-                result.append(lines[lineno] + "\n")
-    return result
-
-
-def ospf(lines) -> list:
-    count = 0
-    result = []
-    for line in lines:
-        count = count + 1
-        if re.search("ospf", line):
-            for lineno in range(count - 1, len(lines)):
-                if re.search("!", lines[lineno]):
-                    break
-                result.append(lines[lineno] + "\n")
-    return result
-
-
-def eigrp(lines) -> list:
-    count = 0
-    result = []
-    for line in lines:
-        count = count + 1
-        if re.search("eigrp", line):
-            for lineno in range(count - 1, len(lines)):
-                if re.search("!", lines[lineno]):
-                    break
-                result.append(lines[lineno] + "\n")
-    return result
-
-
-def bgp(lines) -> list:
-    count = 0
-    result = []
-    for line in lines:
-        count = count + 1
-        if re.search("bgp", line):
-            for lineno in range(count - 1, len(lines)):
-                if re.search("!", lines[lineno]):
-                    break
-                result.append(lines[lineno] + "\n")
-    return result
-
-
-def mpls(lines) -> list:
-    search_list = ["mpls", "vrf", "ospf", "bgp", "vpnv4"]
-    count = 0
-    result = []
-    for line in lines:
-        count = count + 1
-        for search_word in search_list:
-            if re.search(search_word, line):
-                for lineno in range(count - 1, len(lines)):
-                    if re.search("!", lines[lineno]):
-                        break
-                    result.append(lines[lineno] + "\n")
-    return result
-
-
-def multicast(lines) -> list:
-    search_list = ["multicast", "interface"]
-    count = 0
-    result = []
-    for line in lines:
-        count = count + 1
-        for search_word in search_list:
-            if re.search(search_word, line):
-                for lineno in range(count - 1, len(lines)):
-                    if re.search("!", lines[lineno]):
-                        break
-                    result.append(lines[lineno] + "\n")
-    return result
-
-
-def interface(lines) -> list:
-    count = 0
-    result = []
-    for line in lines:
-        count = count + 1
-        if re.search("interface", line):
-            for lineno in range(count - 1, len(lines)):
-                if re.search("!", lines[lineno]):
-                    break
-                result.append(lines[lineno] + "\n")
-    return result
-
-
 def ospf_json(lines) -> list:
     i = 10
     dictionary = []
@@ -435,8 +340,8 @@ def multicast_json(lines) -> list:
 u = "y"
 while u == "y":
     result = []
-    user_input0 = input("Do you need optimised filter or not (y/n): ")
-    if user_input0 == "y":
+    user_input1 = input("Do you need to filter running configurartion or ip route configuration (run/route): ")
+    if user_input1 == "run":
         user_input1 = input("Do you need IOSXR or IOSXE configuration filter (xe/xr): ")
         user_input2 = input(
             "Which running configuration do you need: (igp/mpls/unified_mpls/multicast) ")
@@ -458,61 +363,29 @@ while u == "y":
             with open(filename, 'w+') as fout:
                 for lines in result:
                     fout.write(lines)
-    else:
-        user_input1 = input("Do you need to filter running configurartion or ip route configuration (run/route): ")
-        if user_input1 == "run":
-            user_input2 = input(
-                "Which running configuration do you need: (bgp/isis/eigrp/ospf/mpls/unified_mpls/multicast/interface) ")
-            # filename = 'Input\\show run ' + user_input2 + '.txt'
-            filename = 'Input\\mpls config.txt'
-            f = open(filename, 'r')
-            lines = f.readlines()
-            if user_input2 == "ospf":
-                result = ospf(lines)
-            elif user_input2 == "isis":
-                result = isis(lines)
-            elif user_input2 == "eigrp":
-                result = eigrp(lines)
-            elif user_input2 == "bgp":
-                result = bgp(lines)
-            elif user_input2 == "mpls":
-                result = mpls(lines)
-            elif user_input2 == "multicast":
-                result = multicast(lines)
-            elif user_input2 == "interface":
-                result = interface(lines)
-            elif user_input2 == "unified_mpls":
-                result = unified_mpls(lines)
-            else:
-                result.append("Invalid Input")
-            if result[0] != "Invalid Input":
-                filename = 'Output\\show run (filtered) ' + user_input2 + '.txt'
-                with open(filename, 'w+') as fout:
-                    for lines in result:
-                        fout.write(lines)
-        elif user_input1 == "route":
-            user_input2 = input("Which routes do you want to display: (eigrp/ospf/bgp/mpls/multicast) ")
-            filename = 'Input\\show ip route ' + user_input2 + '.txt'
-            f = open(filename, 'r')
-            lines = f.readlines()
-            if user_input2 == "ospf":
-                result = ospf_json(lines)
-            elif user_input2 == "eigrp":
-                result = eigrp_json(lines)
-            elif user_input2 == "bgp":
-                result = bgp_json(lines)
-            elif user_input2 == "mpls":
-                result = mpls_json(lines)
-            elif user_input2 == "multicast":
-                result = multicast_json(lines)
-            else:
-                result.append("Invalid Input")
-            if result[0] != "Invalid Input":
-                filename = 'Output\\show ip route ' + user_input2 + '.json'
-                with open(filename, 'w+') as fout:
-                    json.dump(result, fout)
+    elif user_input1 == "route":
+        user_input2 = input("Which routes do you want to display: (eigrp/ospf/bgp/mpls/multicast) ")
+        filename = 'Input\\show ip route ' + user_input2 + '.txt'
+        f = open(filename, 'r')
+        lines = f.readlines()
+        if user_input2 == "ospf":
+            result = ospf_json(lines)
+        elif user_input2 == "eigrp":
+            result = eigrp_json(lines)
+        elif user_input2 == "bgp":
+            result = bgp_json(lines)
+        elif user_input2 == "mpls":
+            result = mpls_json(lines)
+        elif user_input2 == "multicast":
+            result = multicast_json(lines)
         else:
             result.append("Invalid Input")
+        if result[0] != "Invalid Input":
+            filename = 'Output\\show ip route ' + user_input2 + '.json'
+            with open(filename, 'w+') as fout:
+                json.dump(result, fout)
+    else:
+        result.append("Invalid Input")
     pretty_result = prettify(result)
     print(*pretty_result, sep="\n")
     print("Size of filtered Output: ", end='')
