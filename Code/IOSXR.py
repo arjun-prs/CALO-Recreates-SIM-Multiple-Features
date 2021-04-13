@@ -440,10 +440,7 @@ while u == "y":
         user_input1 = input("Do you need IOSXR or IOSXE configuration filter (xe/xr): ")
         user_input2 = input(
             "Which running configuration do you need: (igp/mpls/unified_mpls/multicast) ")
-        if user_input1 == "xe":
-            filename = 'Input\\mpls config.txt'
-        else:
-            filename = 'Input\\bgp config.txt'
+        filename = 'Input\\ios'+user_input1+' config.txt'
         f = open(filename, 'r')
         lines = f.readlines()
         if user_input2 == "igp":
