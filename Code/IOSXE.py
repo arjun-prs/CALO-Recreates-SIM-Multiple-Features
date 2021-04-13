@@ -459,8 +459,8 @@ while u == "y":
         if result[0] != "Invalid Input":
             filename = 'Output\\show run (filtered) ' + user_input2 + '.txt'
             with open(filename, 'w+') as fout:
-                for j in result:
-                    fout.write(j)
+                for lines in result:
+                    fout.write(lines)
     else:
         user_input1 = input("Do you need to filter running configurartion or ip route configuration (run/route): ")
         if user_input1 == "run":
@@ -491,8 +491,8 @@ while u == "y":
             if result[0] != "Invalid Input":
                 filename = 'Output\\show run (filtered) ' + user_input2 + '.txt'
                 with open(filename, 'w+') as fout:
-                    for j in result:
-                        fout.write(j)
+                    for lines in result:
+                        fout.write(lines)
         elif user_input1 == "route":
             user_input2 = input("Which routes do you want to display: (eigrp/ospf/bgp/mpls/multicast) ")
             filename = 'Input\\show ip route ' + user_input2 + '.txt'
@@ -530,8 +530,8 @@ while u == "y":
         print("Size of further filtered Output: ", end='')
         print(len(filtered_result))
         with open("Output\\filtered result.txt", 'w+') as fout:
-            for j in filtered_result:
-                fout.write(j)
+            for lines in filtered_result:
+                fout.write(lines)
     u = input("Do you want to continue (y/n): ")
 f.close()
 fout.close()
