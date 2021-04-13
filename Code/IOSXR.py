@@ -6,6 +6,14 @@ __copyright__ = "Copyright (c) 2018-2021 Cisco Systems. All rights reserved."
 print("\n" + __copyright__)
 
 
+def prettify(result) -> list:
+    master_result = []
+    for line in result:
+        lines = line.split("\n")
+        master_result.append(lines[1])
+    return master_result
+
+
 def exbridgedomain(result) -> list:
     domain_list = []
     for segments in result:
@@ -429,9 +437,13 @@ while u == "y":
     result = []
     user_input0 = input("Do you need optimised filter or not (y/n): ")
     if user_input0 == "y":
+        user_input1 = input("Do you need IOSXR or IOSXE configuration filter (xe/xr): ")
         user_input2 = input(
             "Which running configuration do you need: (igp/mpls/unified_mpls/multicast) ")
-        filename = 'Input\\mpls config.txt'
+        if user_input1 == "xe":
+            filename = 'Input\\mpls config.txt'
+        else:
+            filename = 'Input\\bgp config.txt'
         f = open(filename, 'r')
         lines = f.readlines()
         if user_input2 == "igp":
@@ -455,7 +467,7 @@ while u == "y":
             user_input2 = input(
                 "Which running configuration do you need: (bgp/isis/eigrp/ospf/mpls/unified_mpls/multicast/interface) ")
             # filename = 'Input\\show run ' + user_input2 + '.txt'
-            filename = 'Input\\bgp config.txt'
+            filename = 'Input\\mpls config.txt'
             f = open(filename, 'r')
             lines = f.readlines()
             if user_input2 == "ospf":
@@ -504,7 +516,8 @@ while u == "y":
                     json.dump(result, fout)
         else:
             result.append("Invalid Input")
-    print(*result, sep="\n")
+    pretty_result = prettify(result)
+    print(*pretty_result, sep="\n")
     print("Size of filtered Output: ", end='')
     print(len(result))
     user_input3 = input("Do you want to filter the result further (y/n): ")
