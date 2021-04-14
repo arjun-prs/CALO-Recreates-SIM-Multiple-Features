@@ -156,6 +156,27 @@ def exreq(lines, reqs):
     return (scount, dcount)
 
 
+def rxreq(lines, reqs) -> list:
+    scount = 0
+    count = 0
+    dcount = 0
+    master_result = []
+    for line in lines:
+        count += 1
+        if re.search(reqs, line):
+            scount = count
+    for i in range(scount + 1, len(lines)):
+        if re.search('!', lines[i]):
+            count = dcount
+            dcount = i
+            tresult = "!\n"
+            for j in range(count + 1, dcount):
+                tresult += lines[j]
+            if tresult != "!\n":
+                master_result.append(tresult)
+    return master_result
+
+
 def exbgp(lines, result) -> list:
     scount = 0
     shcount, dhcount = exreq(filename, "show running-config")
@@ -290,9 +311,7 @@ def exmpls(lines, result):
                     if re.search("!", lines[j]):
                         break
                     tresult += lines[j]
-                if tresult not in result and not re.search("encapsulation", tresult) and not re.search("MGMT",
-                                                                                                       tresult) and not re.search(
-                        "qos", tresult):
+                if tresult not in result and not re.search("encapsulation", tresult) and not re.search("MGMT", tresult) and not re.search( "qos", tresult):
                     result.append(tresult)
     return result
 
@@ -409,14 +428,14 @@ while u == "y":
     user_input0 = input("Do you need to filter running configurartion or ip route configuration (run/route): ")
     if user_input0 == "run":
         user_input1 = input("Do you need IOSXR or IOSXE configuration filter (xe/xr): ")
+        filename = 'Input\\ios' + user_input1 + ' config.txt'
+        f = open(filename, 'r')
+        lines = f.readlines()
         if user_input1 == "xr":
-            result.append("Feature still under development")
-            flag = False
+            user_input2 = "bgp"
+            result = rxreq(lines, "Show run router bgp")
         elif user_input1 == "xe":                                                                                         
-            user_input2 = input("Which running configuration do you need: (igp/eigrp/static/ospf/isis/mpls/unified_mpls/multicast) ")
-            filename = 'Input\\ios' + user_input1 + ' config.txt'
-            f = open(filename, 'r')
-            lines = f.readlines()
+            user_input2 = input("Which running configuration do you need: (igp/eigrp/static/ospf/isis/mpls/unified_mpls) ")
             if user_input2 == "igp":
                 result = exigp(lines)
             elif user_input2 == "eigrp":
@@ -437,53 +456,53 @@ while u == "y":
             else:
                 result.append("Invalid Input")
                 flag = False
-            filename = 'Output\\' + user_input1 + ' show run (filtered) ' + user_input2 + '.txt'
-            with open(filename, 'w+') as fout:
-                for lines in result:
-                    fout.write(lines)
-        elif user_input0 == "route":
-            user_input2 = input("Which routes do you want to display: (eigrp/ospf/bgp/mpls/multicast) ")
-            filename = 'Input\\show ip route ' + user_input2 + '.txt'
-            f = open(filename, 'r')
-            lines = f.readlines()
-            if user_input2 == "ospf":
-                result = ospf_json(lines)
-            elif user_input2 == "eigrp":
-                result = eigrp_json(lines)
-            elif user_input2 == "bgp":
-                result = bgp_json(lines)
-            elif user_input2 == "mpls":
-                result = mpls_json(lines)
-            elif user_input2 == "multicast":
-                result = multicast_json(lines)
-            else:
-                result.append("Invalid Input")
-                flag = False
-            filename = 'Output\\show ip route ' + user_input2 + '.json'
-            with open(filename, 'w+') as fout:
-                json.dump(result, fout)
+        filename = 'Output\\' + user_input1 + ' show run (filtered) ' + user_input2 + '.txt'
+        with open(filename, 'w+') as fout:
+            for lines in result:
+                fout.write(lines)
+    elif user_input0 == "route":
+        user_input2 = input("Which routes do you want to display: (eigrp/ospf/bgp/mpls/multicast) ")
+        filename = 'Input\\show ip route ' + user_input2 + '.txt'
+        f = open(filename, 'r')
+        lines = f.readlines()
+        if user_input2 == "ospf":
+            result = ospf_json(lines)
+        elif user_input2 == "eigrp":
+            result = eigrp_json(lines)
+        elif user_input2 == "bgp":
+            result = bgp_json(lines)
+        elif user_input2 == "mpls":
+            result = mpls_json(lines)
+        elif user_input2 == "multicast":
+            result = multicast_json(lines)
         else:
             result.append("Invalid Input")
-            flag =False
-        if flag == True and user_input2 != "multicast" and user_input0 == "run":
-            pretty_result = prettify(result)
-            print(*pretty_result, sep="\n")
-            print("Size of filtered Output: ", end='')
-            print(len(result))
-            user_input3 = input("Do you want to filter the result further (y/n): ")
-            if user_input3 == "y":
-                keyword = input("Please enter keywords to include in space seperated format: ")
-                filtered_result = resfilterin(result, keyword.split())
-                keyword = input("Please enter keywords to exclude in space seperated format: ")
-                filtered_result = resfilterout(filtered_result, keyword.split())
-                print(*filtered_result, sep="\n")
-                print("Size of further filtered Output: ", end='')
-                print(len(filtered_result))
-                with open("Output\\filtered result.txt", 'w+') as fout:
-                    for lines in filtered_result:
-                        fout.write(lines)
-        else:
-            print(*result, sep="\n")   
+            flag = False
+        filename = 'Output\\show ip route ' + user_input2 + '.json'
+        with open(filename, 'w+') as fout:
+            json.dump(result, fout)
+    else:
+        result.append("Invalid Input")
+        flag =False
+    if flag == True and user_input0 == "run":
+        pretty_result = prettify(result)
+        # print(*pretty_result, sep="\n")
+        print("Size of filtered Output: ", end='')
+        print(len(result))
+        user_input3 = input("Do you want to filter the result further (y/n): ")
+        if user_input3 == "y":
+            keyword = input("Please enter keywords to include in space seperated format: ")
+            filtered_result = resfilterin(result, keyword.split())
+            keyword = input("Please enter keywords to exclude in space seperated format: ")
+            filtered_result = resfilterout(filtered_result, keyword.split())
+            # print(*filtered_result, sep="\n")
+            print("Size of further filtered Output: ", end='')
+            print(len(filtered_result))
+            with open('Output\\' + user_input1 + ' show run ' + user_input2 + ' filtered result.txt', 'w+') as fout:
+                for lines in filtered_result:
+                    fout.write(lines)
+    else:
+        print(*result, sep="\n")   
     u = input("Do you want to continue (y/n): ")
 f.close()
 fout.close()

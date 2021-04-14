@@ -1,0 +1,517 @@
+!
+interface Loopback0
+ description ## LCKNMHLRPAR002-CORE-MGMT-LPBK ##
+ ip address 172.16.64.25 255.255.255.255
+ no ip redirects
+ no ip proxy-arp
+ ipv6 address 2405:200:201:900:172:16:64:25/128
+ no ipv6 redirects
+ no ipv6 unreachables
+ isis tag 1000
+!
+interface TenGigabitEthernet0/4/8
+ description # TO-LCKNPBKAAAR001-TenGE0/1/0/8-Fiber #
+ mtu 9216
+ ip address 172.16.203.70 255.255.255.254
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip router isis CORE
+ ip pim sparse-mode
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ cdp enable
+ ipv6 address 2405:200:109:0:172:16:203:70/127
+ ipv6 enable
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis CORE
+ mpls ip
+ mpls ldp igp sync delay 25
+ synchronous mode
+ bfd template AG1-AG3AG2
+ clns mtu 9200
+ isis circuit-type level-1
+ isis network point-to-point 
+ isis bfd
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+!
+router isis CORE
+ net 49.0002.1720.1606.4025.00
+ is-type level-1
+ authentication mode md5 level-1
+ authentication key-chain ISIS-KEY level-1
+ metric-style wide
+ fast-flood 10
+ ip route priority high tag 5000
+ set-overload-bit on-startup 360
+ max-lsp-lifetime 65535
+ lsp-refresh-interval 65000
+ spf-interval 5 50 200
+ prc-interval 5 50 200
+ lsp-gen-interval 5 50 200
+ no hello padding
+ log-adjacency-changes
+ nsf cisco
+ fast-reroute per-prefix level-1 route-map RJIL-INFRA-RLFA-IPv4
+ fast-reroute remote-lfa level-1 mpls-ldp
+ passive-interface Loopback0
+!
+router isis RAN
+ net 49.0003.1720.2309.6025.00
+ is-type level-2-only
+ authentication mode md5 level-2
+ authentication key-chain ISIS-KEY level-2
+ metric-style wide
+ fast-flood 10
+ ip route priority high tag 10
+ set-overload-bit on-startup 180 suppress external
+ max-lsp-lifetime 65535
+ lsp-refresh-interval 65000
+ spf-interval 5 50 200
+ prc-interval 5 50 200
+ lsp-gen-interval 5 50 200
+ no hello padding
+ log-adjacency-changes
+ nsf cisco
+ fast-reroute per-prefix level-2 all
+ fast-reroute remote-lfa level-2 mpls-ldp
+ microloop avoidance disable
+ redistribute connected route-map MPLS-LOOPBACK-IPv4
+ redistribute isis CORE ip route-map RJIL-ISISCORE2RAN-IPv4
+ redistribute bgp 55836 route-map RJIL-BGP2ISIS-IPv4
+ passive-interface Loopback100
+ distribute-list route-map RJIL-BGP2ISIS-REDIST-IPV4 in
+!
+ address-family ipv4
+  bgp redistribute-internal
+  bgp additional-paths select backup
+  bgp additional-paths send
+  bgp additional-paths install
+  bgp nexthop trigger delay 0
+  network 172.16.64.25 mask 255.255.255.255 route-map CSRAG1-COMM
+  redistribute connected
+  redistribute isis RAN level-2 route-map RJIL-RAN-ISIS2BGP-IPv4
+  neighbor RJIL-CSS-IBGP-GRP send-community
+  neighbor RJIL-CSS-IBGP-GRP route-reflector-client
+  neighbor RJIL-CSS-IBGP-GRP next-hop-self all
+  neighbor RJIL-CSS-IBGP-GRP route-map RJIL-PEER-CSS-IPv4-OUT out
+  neighbor RJIL-AG2-IBGP-GRP send-community
+  neighbor RJIL-AG2-IBGP-GRP next-hop-self all
+  neighbor RJIL-AG2-IBGP-GRP route-map RJIL-PEER-AG2-IPv4-OUT out
+  neighbor RJIL-AG3-IBGP-GRP send-community
+  neighbor RJIL-AG3-IBGP-GRP next-hop-self all
+  neighbor RJIL-AG3-IBGP-GRP route-map RJIL-PEER-AG3-IPv4-OUT out
+  neighbor RJIL-AG3-IBGP-GRP send-label
+  neighbor 49.44.2.65 activate
+  neighbor 49.44.2.66 activate
+  neighbor 49.44.2.74 activate
+  neighbor 49.44.2.77 activate
+  neighbor 172.18.65.229 activate
+  neighbor 172.18.67.25 activate
+  neighbor 172.18.69.250 activate
+  neighbor 172.18.72.27 activate
+  neighbor 172.18.72.37 activate
+  neighbor 172.18.75.186 activate
+  neighbor 172.18.79.55 activate
+  neighbor 172.18.79.113 activate
+  neighbor 172.19.180.189 activate
+  neighbor 172.23.96.180 activate
+  neighbor 172.23.96.182 activate
+  neighbor 172.23.96.183 activate
+  neighbor 172.23.96.184 activate
+  neighbor 172.23.96.185 activate
+  neighbor 172.23.96.186 activate
+  neighbor 172.23.96.187 activate
+  neighbor 172.23.96.189 activate
+  neighbor 172.23.96.190 activate
+  neighbor 172.23.96.191 activate
+  neighbor 172.23.96.192 activate
+  neighbor 172.23.96.193 activate
+  neighbor 172.23.96.194 activate
+  neighbor 172.23.96.195 activate
+  neighbor 172.23.96.196 activate
+  neighbor 172.23.96.197 activate
+  neighbor 172.23.100.178 activate
+  neighbor 172.23.101.202 activate
+  neighbor 172.23.102.204 activate
+  neighbor 172.23.103.1 activate
+  neighbor 172.23.103.118 activate
+  neighbor 172.23.107.78 activate
+  neighbor 172.23.107.79 activate
+  neighbor 172.23.109.49 activate
+  neighbor 172.23.109.54 activate
+  neighbor 172.23.109.70 activate
+  neighbor 172.23.110.105 activate
+  neighbor 172.23.112.245 activate
+  neighbor 172.23.113.77 activate
+  neighbor 172.23.117.133 activate
+  neighbor 172.23.119.230 activate
+  neighbor 172.23.121.77 activate
+  neighbor 172.23.121.78 activate
+  neighbor 172.23.123.164 activate
+  neighbor 172.23.123.244 activate
+  neighbor 172.23.123.251 activate
+  neighbor 172.23.123.252 activate
+  neighbor 172.25.159.4 activate
+  neighbor 172.25.159.42 activate
+  neighbor 172.25.164.82 activate
+  neighbor 172.25.171.40 activate
+  neighbor 172.25.171.42 activate
+  neighbor 172.25.171.115 activate
+  neighbor 172.25.189.97 activate
+  neighbor 172.25.189.98 activate
+  neighbor 172.25.211.180 activate
+  neighbor 172.25.221.233 activate
+  neighbor 172.25.234.181 activate
+  neighbor 172.30.12.165 activate
+  neighbor 172.30.12.225 activate
+  neighbor 172.30.12.226 activate
+  neighbor 172.30.45.103 activate
+  neighbor 172.30.75.193 activate
+  neighbor 172.30.96.62 activate
+  neighbor 172.30.96.251 activate
+  neighbor 172.30.120.124 activate
+  neighbor 172.30.145.9 activate
+  neighbor 172.30.145.10 activate
+  neighbor 172.30.145.225 activate
+  neighbor 172.30.164.185 activate
+  neighbor 172.30.239.247 activate
+  neighbor 172.30.239.252 activate
+ exit-address-family
+!
+mpls label protocol ldp
+mpls ldp nsr
+mpls ldp password option 10 for MPLS-LDP-IPv4 7 <removed>
+mpls ldp graceful-restart
+mpls ldp session protection
+mpls ldp igp sync holddown 2000
+mpls ldp discovery targeted-hello accept
+multilink bundle-name authenticated
+!
+ address-family ipv6
+  multi-topology
+  spf-interval 5 50 200
+  prc-interval 5 50 200
+ exit-address-family
+ mpls ldp sync
+!
+ address-family ipv6
+  spf-interval 5 50 200
+  prc-interval 5 50 200
+ exit-address-family
+ mpls ldp sync
+!
+route-map RJIL-PEER-AG2-IPv6-OUT permit 10 
+ match community RJIL-PEER-AG2-IPv6-OUT
+ set mpls-label
+!
+route-map RJIL-PEER-AG3-IPv4-OUT permit 10 
+ match community RJIL-PEER-AG3-IPv4-OUT
+ set mpls-label
+!
+route-map RJIL-PEER-CSS-IPv6-OUT permit 10 
+ match community RJIL-PEER-CSS-IPv6-OUT
+ set mpls-label
+!
+interface GigabitEthernet0/3/1
+ description # TO-LCKNBTULESR002-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 368
+!
+interface GigabitEthernet0/3/3
+ description # TO-LCKNSHPMESR003-Xe-0/3/0-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 365
+!
+interface GigabitEthernet0/3/4
+ description # TO-LCKNMBRKESR004-GigabitEthernet0/0/22-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 364
+!
+interface GigabitEthernet0/3/5
+ description # TO-LCKNPRTNESR005-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ shutdown
+ negotiation auto
+ synchronous mode
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  bridge-domain 363
+!
+interface GigabitEthernet0/3/6
+ description # TO-LCKNAZEZESR007-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ shutdown
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 362
+!
+interface GigabitEthernet0/3/7
+ description # TO-LCKNKHRGESR001-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 361
+!
+interface GigabitEthernet0/4/2
+ description # TO-LCKNMBRKESR002-Xe-0/3/0-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 357
+!
+interface GigabitEthernet0/4/3
+ description # TO-LCKNGHILESR002-Xe-0/3/0-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 355
+!
+interface GigabitEthernet0/4/4
+ description # TO-LCKNMDYAESR001-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 354
+!
+interface GigabitEthernet0/4/5
+ description # TO-LCKNMHLRESR002-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 353
+!
+interface GigabitEthernet0/4/6
+ description # TO-LCKNPRTGESR002-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 352
+!
+interface GigabitEthernet0/4/7
+ description # TO-LCKNMHLRESR004-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 351
+!
+interface GigabitEthernet0/5/0
+ description # TO-LCKNMHLRESR001-xe-0/3/0-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 348
+!
+interface GigabitEthernet0/5/4
+ description # TO-LCKNMHLRESR005-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 344
+!
+interface GigabitEthernet0/5/5
+ description # TO-LCKNRHMNESR004-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 343
+!
+interface GigabitEthernet0/5/6
+ description # TO-LCKNFZLGESR004-TenGigabitEthernet0/0/10-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ negotiation auto
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service-policy output RJIL-QOS-NTWK-NNI-OUT-PARENT
+ service instance 1 ethernet
+  description # Data traffic #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 342
+!
+interface TenGigabitEthernet0/5/8
+ description # TO-LCKNMHLRPAR001-TenGE0/1/0-Fiber #
+ mtu 9216
+ no ip address
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ cdp enable
+ synchronous mode
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+ service instance 2 ethernet
+  description # CORE #
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 431

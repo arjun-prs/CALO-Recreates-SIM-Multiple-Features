@@ -1,0 +1,1085 @@
+!
+ter
+RP/0/RSP0/CPU0:UDPRULTCCSR001#terminal le
+RP/0/RSP0/CPU0:UDPRULTCCSR001#terminal length 0
+
+Tue Oct 13 19:09:37.901 IST
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-Admin show platform
+
+                              ^
+% Invalid input detected at '^' marker.
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-Admin show install act sum
+
+                              ^
+% Invalid input detected at '^' marker.
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-Show run router bgp
+
+                              ^
+% Invalid input detected at '^' marker.
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-Sh run bfd
+
+                              ^
+% Invalid input detected at '^' marker.
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-Show bgp all all sum
+
+                              ^
+% Invalid input detected at '^' marker.
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-
+RP/0/RSP0/CPU0:UDPRULTCCSR001#-Show logs
+
+                              ^
+% Invalid input detected at '^' marker.
+RP/0/RSP0/CPU0:UDPRULTCCSR001#Admin show platform
+
+Tue Oct 13 19:10:13.178 IST
+Node		Type			  State		   Config State
+-----------------------------------------------------------------------------
+0/RSP0/CPU0     A9K-RSP880-SE(Active)     IOS XR RUN       PWR,NSHUT,MON
+0/RSP1/CPU0     A9K-RSP880-SE(Standby)    IOS XR RUN       PWR,NSHUT,MON
+0/FT0/SP        ASR-9010-FAN-V2           READY            
+0/FT1/SP        ASR-9010-FAN-V2           READY            
+0/5/CPU0        A99-8X100GE-SE            IOS XR RUN       PWR,NSHUT,MON
+0/6/CPU0        A9K-8X100GE-SE            IOS XR RUN       PWR,NSHUT,MON
+0/7/CPU0        A9K-8X100GE-SE            IOS XR RUN       PWR,NSHUT,MON
+0/PS0/M0/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+0/PS0/M1/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+0/PS0/M2/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+0/PS0/M3/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+0/PS1/M0/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+0/PS1/M1/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+0/PS1/M2/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+0/PS1/M3/SP     PWR-4.4KW-DC-V3           READY            PWR,NSHUT,MON
+RP/0/RSP0/CPU0:UDPRULTCCSR001#
+RP/0/RSP0/CPU0:UDPRULTCCSR001#Admin show install act sum
+
+Tue Oct 13 19:10:13.630 IST
+Default Profile:
+  SDRs:
+    Owner
+  Active Packages:
+    disk0:asr9k-bng-px-6.5.3
+    disk0:asr9k-doc-px-6.5.3
+    disk0:asr9k-fpd-px-6.5.3
+    disk0:asr9k-k9sec-px-6.5.3
+    disk0:asr9k-mcast-px-6.5.3
+    disk0:asr9k-mgbl-px-6.5.3
+    disk0:asr9k-mini-px-6.5.3
+    disk0:asr9k-mpls-px-6.5.3
+    disk0:asr9k-services-px-6.5.3
+
+RP/0/RSP0/CPU0:UDPRULTCCSR001#Show run router bgp
+
+Tue Oct 13 19:10:20.875 IST
+router bgp 55836
+ nsr
+ bfd minimum-interval 50
+ bfd multiplier 3
+ bgp router-id 49.44.5.113
+ bgp graceful-restart
+ ibgp policy out enforce-modifications
+ address-family ipv4 unicast
+  additional-paths receive
+  additional-paths send
+  maximum-paths ebgp 4
+  maximum-paths ibgp 2
+  additional-paths selection route-policy ADD-PATH-TO-IBGP
+  nexthop resolution prefix-length minimum 32
+  nexthop trigger-delay critical 0
+  nexthop trigger-delay non-critical 0
+  network 49.44.5.113/32 route-policy SAR-COMM
+  allocate-label route-policy RJIL-MPLS-LOOPBACK-IPv4
+!
+ address-family vpnv4 unicast
+  additional-paths receive
+  additional-paths send
+  nexthop resolution prefix-length minimum 32
+  nexthop trigger-delay critical 1
+  nexthop trigger-delay non-critical 1
+!
+ address-family ipv6 unicast
+  additional-paths receive
+  additional-paths send
+  maximum-paths ebgp 4
+  maximum-paths ibgp 2
+  additional-paths selection route-policy ADD-PATH-TO-IBGP
+  nexthop trigger-delay critical 0
+  nexthop trigger-delay non-critical 0
+  network 2405:200:201:3400:49:44:5:113/128 route-policy SAR-COMM
+  aggregate-address 2409:4012:2000::/36 route-policy RJIL-VRF-SUBSCRIBER-DATA-BL-N93k-IPv6-IN
+  aggregate-address 2409:4052:2000::/36 route-policy RJIL-VRF-SUBSCRIBER-DATA-BL-N93k-IPv6-IN
+  aggregate-address 2409:4085:1000::/36 route-policy RJIL-VRF-SUBSCRIBER-DATA-BL-N93k-IPv6-IN
+  allocate-label route-policy RJIL-FILER-ALL-EXCEPT-MULTICAST
+!
+ address-family ipv6 multicast
+!
+ address-family vpnv6 unicast
+  additional-paths receive
+  additional-paths send
+  nexthop trigger-delay critical 1
+  nexthop trigger-delay non-critical 1
+!
+ address-family ipv4 mdt
+!
+ address-family ipv4 rt-filter
+!
+ neighbor-group RJIL-CRR-IBGP-GRP
+  remote-as 55836
+  password encrypted 073D756B712B1E351E2D3B5F57386576076261
+  update-source Loopback0
+  graceful-restart
+  address-family ipv4 labeled-unicast
+   route-policy RJIL-PEER-CRR-IN in
+   maximum-prefix 1500000 85 warning-only
+   route-policy RJIL-PEER-CRR-OUT out
+   next-hop-self
+!
+  address-family vpnv4 unicast
+!
+  address-family vpnv6 unicast
+!
+  address-family ipv4 mdt
+!
+  address-family ipv4 rt-filter
+!
+ neighbor-group RJIL-URR-IBGP-GRP
+  remote-as 55836
+  password encrypted 1425462C33262D1B2D170366710149442C5002
+  update-source Loopback0
+  graceful-restart
+  address-family ipv4 unicast
+   maximum-prefix 1500000 85 warning-only
+   route-policy RJIL-PEER-URR-OUT out
+   next-hop-self
+!
+  address-family ipv6 labeled-unicast
+   maximum-prefix 30000 90 warning-only
+   route-policy RJIL-PEER-URR-OUT out
+   next-hop-self
+!
+ neighbor-group RJIL-CRR-IBGP-GRP-IPv6
+  remote-as 55836
+  password encrypted 053952281E6E4939103A2741581E4A7804757C
+  update-source Loopback0
+  graceful-restart
+  address-family ipv6 multicast
+   route-policy RJIL-PEER-CRR-IPv6-OUT out
+   next-hop-self
+!
+ neighbor-group RJIL-DNS-EBGP-GRP-IPv4
+  remote-as 64515
+  graceful-restart
+  address-family ipv4 unicast
+   route-policy RJIL-DNS-IN-IPv4 in
+   maximum-prefix 100 75 warning-only
+   route-policy RJIL-DNS-OUT-IPv4 out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+ neighbor-group RJIL-DNS-EBGP-GRP-IPv6
+  remote-as 64515
+  graceful-restart
+  address-family ipv6 unicast
+   route-policy RJIL-DNS-IN-IPv6 in
+   maximum-prefix 100 75 warning-only
+   route-policy RJIL-DNS-OUT-IPv6 out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+  remote-as 65000
+  password encrypted 06345B06736C0E29002822585F1664790B7967
+  graceful-restart
+  address-family ipv4 unicast
+   send-community-ebgp
+   route-policy RJIL-PASS-ALL in
+   maximum-prefix 1500000 85 warning-only
+   as-override
+!
+ neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+  remote-as 65000
+  password encrypted 122B51302D290B342F14147B60276C41284757
+  graceful-restart
+  address-family ipv6 unicast
+   send-community-ebgp
+   route-policy RJIL-PASS-ALL in
+   maximum-prefix 30000 90 warning-only
+   as-override
+!
+ neighbor-group RJIL-BL-N93k-GLOBAL-EBGP-GRP-IPv6
+  remote-as 65000
+  password encrypted 15205F2B3B082C142D0C0571401558512E070D
+  graceful-restart
+  address-family ipv6 unicast
+   send-community-ebgp
+   route-policy RJIL-PASS-ALL in
+   maximum-prefix 30000 90 warning-only
+   as-override
+!
+  address-family ipv6 multicast
+   route-policy RJIL-PASS-ALL in
+   maximum-prefix 30000 90 warning-only
+   as-override
+!
+ neighbor 49.44.2.3
+  use neighbor-group RJIL-URR-IBGP-GRP
+  description *** PEERS WITH NGPRSNGNURR001 ***
+!
+ neighbor 49.44.2.4
+  use neighbor-group RJIL-CRR-IBGP-GRP
+  description # NGPRSNGNCRR001 #
+!
+ neighbor 49.44.0.137
+  use neighbor-group RJIL-CRR-IBGP-GRP
+  description # NOIDNDFDCRR001 #
+!
+ neighbor 49.44.0.138
+  use neighbor-group RJIL-URR-IBGP-GRP
+  description *** PEERS WITH NOIDNDFDURR001 ***
+!
+ neighbor 172.16.8.210
+  remote-as 64539
+  description # TO-UDPRULTCNAT011-A10-1 OUT #
+  address-family ipv4 unicast
+   route-policy RJIL-FROM-SAR-A10-1-GLOBAL-IN in
+   route-policy RJIL-FROM-SAR-A10-1-GLOBAL-OUT out
+!
+ neighbor 172.16.8.218
+  remote-as 64539
+  description # TO-UDPRULTCNAT012-A10-2-OUT #
+  address-family ipv4 unicast
+   route-policy RJIL-FROM-SAR-A10-2-GLOBAL-IN in
+   route-policy RJIL-FROM-SAR-A10-2-GLOBAL-OUT out
+!
+ neighbor 172.17.120.90
+  remote-as 64539
+  description # TO A10-3 OUT #
+  address-family ipv4 unicast
+   route-policy RJIL-FROM-SAR-A10-3-GLOBAL-IN in
+   route-policy RJIL-FROM-SAR-A10-3-GLOBAL-OUT out
+!
+ neighbor 192.168.24.128
+  use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+  bfd fast-detect
+  description *** PEERS WITH UDPRULTCCESB01-Global ***
+  address-family ipv4 unicast
+   route-policy RJIL-GLOBAL-BL-N93k-IPv4-OUT out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+ neighbor 192.168.24.132
+  use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+  bfd fast-detect
+  description *** PEERS WITH UDPRULTCCESB51-Global ***
+  address-family ipv4 unicast
+   route-policy RJIL-GLOBAL-BL-N93k-IPv4-OUT out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+ neighbor 2405:200:801:4600::230
+  use neighbor-group RJIL-BL-N93k-GLOBAL-EBGP-GRP-IPv6
+  bfd fast-detect
+  description *** PEERS WITH UDPRULTCCESB01-Global ***
+  address-family ipv6 unicast
+   route-policy RJIL-GLOBAL-BL-N93k-IPv6-OUT out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  address-family ipv6 multicast
+   route-policy RJIL-GLOBAL-BL-N93k-IPv6-OUT out
+!
+ neighbor 2405:200:801:4600::234
+  use neighbor-group RJIL-BL-N93k-GLOBAL-EBGP-GRP-IPv6
+  bfd fast-detect
+  description *** PEERS WITH UDPRULTCCESB51-Global ***
+  address-family ipv6 unicast
+   route-policy RJIL-GLOBAL-BL-N93k-IPv6-OUT out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  address-family ipv6 multicast
+   route-policy RJIL-GLOBAL-BL-N93k-IPv6-OUT out
+!
+ neighbor 2405:200:801:4600::290
+  use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+  bfd fast-detect
+  description *** PEERS WITH UDPRULTCCESB01-VRF-RJIL-SUBSCRIBER-UDPR DATA ***
+  address-family ipv6 unicast
+   route-policy RJIL-VRF-SUBSCRIBER-DATA-BL-N93k-IPv6-IN in
+   route-policy RJIL-VRF-SUBSCRIBER-DATA-BL-N93k-IPv6-OUT out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ neighbor 2405:200:801:4600::294
+  use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+  bfd fast-detect
+  description *** PEERS WITH UDPRULTCCESB51-VRF-RJIL-SUBSCRIBER-UDPR DATA ***
+  address-family ipv6 unicast
+   route-policy RJIL-VRF-SUBSCRIBER-DATA-BL-N93k-IPv6-IN in
+   route-policy RJIL-VRF-SUBSCRIBER-DATA-BL-N93k-IPv6-OUT out
+   default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ neighbor 2405:200:201:800:49:44:2:4
+  use neighbor-group RJIL-CRR-IBGP-GRP-IPv6
+  description # NGPRSNGNCRR001 #
+!
+ neighbor 2405:200:201:200:49:44:0:137
+  use neighbor-group RJIL-CRR-IBGP-GRP-IPv6
+  description # NOIDNDFDCRR001 #
+!
+ vrf RJIL-IME
+  rd 49.44.5.113:6
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+   aggregate-address 2405:200:1811:952::/64
+   aggregate-address 2405:200:1826:952::/64
+   aggregate-address 2405:200:1830:952::/64
+   aggregate-address 2405:200:1834:952::/64
+!
+  neighbor 192.168.24.144
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-IME ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-IME-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 192.168.24.148
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-IME ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-IME-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+ vrf RJIL-IP-MGMT
+  rd 49.44.5.113:29
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+   aggregate-address 2405:200:204:111::/64
+   aggregate-address 2405:200:204:126::/64
+   aggregate-address 2405:200:204:130::/64
+   aggregate-address 2405:200:204:134::/64
+   aggregate-address 2405:200:1811::/48
+   aggregate-address 2405:200:1826::/48
+   aggregate-address 2405:200:1830::/48
+   aggregate-address 2405:200:1834::/48
+   aggregate-address 2405:200:1f96:1024::/64
+   aggregate-address 2405:203:4:11::/64
+   aggregate-address 2405:203:4:26::/64
+   aggregate-address 2405:203:4:30::/64
+   aggregate-address 2405:203:4:34::/64
+   aggregate-address 2405:203:4:111::/64
+   aggregate-address 2405:203:4:126::/64
+   aggregate-address 2405:203:4:130::/64
+   aggregate-address 2405:203:4:134::/64
+   aggregate-address 2405:203:211::/48
+   aggregate-address 2405:203:226::/48
+   aggregate-address 2405:203:230::/48
+   aggregate-address 2405:203:234::/48
+   aggregate-address 2405:203:300:1100::/56
+   aggregate-address 2405:203:300:2600::/56
+   aggregate-address 2405:203:300:3000::/56
+   aggregate-address 2405:203:300:3400::/56
+   aggregate-address 2405:203:301:1100::/56
+   aggregate-address 2405:203:301:2600::/56
+   aggregate-address 2405:203:301:3000::/56
+   aggregate-address 2405:203:301:3400::/56
+   aggregate-address 2405:203:303:9600::/56
+   aggregate-address 2405:203:304:9600::/56
+!
+  neighbor 192.168.24.204
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** IPv4 PEER WITH UDPRULTCCESB01-VRF-RJIL-IP-MGMT ***
+   address-family ipv4 unicast
+    send-community-ebgp
+    route-policy RJIL-DROP-ALL out
+    default-originate
+!
+  neighbor 192.168.24.208
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** IPv4 PEER WITH UDPRULTCCESB51-VRF-RJIL-IP-MGMT ***
+   address-family ipv4 unicast
+    send-community-ebgp
+    route-policy RJIL-DROP-ALL out
+    default-originate
+!
+  neighbor 2405:200:801:4600::278
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** Ipv6 PEER WITH UDPRULTCCESB01-VRF-RJIL-IP-MGMT ***
+   address-family ipv6 unicast
+    send-community-ebgp
+    route-policy RJIL-VRF-BL-N93k-VRF-RJIL-IP-MGMT-IPv6-OUT out
+    default-originate
+!
+  neighbor 2405:200:801:4600::27c
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** Ipv6 PEER WITH UDPRULTCCESB51-VRF-RJIL-IP-MGMT ***
+   address-family ipv6 unicast
+    send-community-ebgp
+    route-policy RJIL-VRF-BL-N93k-VRF-RJIL-IP-MGMT-IPv6-OUT out
+    default-originate
+!
+ vrf RJIL-OAM-ENB
+  rd 49.44.5.113:3
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network ::/0
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+!
+  neighbor 2405:200:801:4600::248
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-OAM ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-OAM-ENB-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::24c
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-OAM ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-OAM-ENB-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-CORE-MGMT
+  rd 49.44.5.113:9
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  neighbor 192.168.24.164
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-CORE-MGMT ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-CORE-MGMT-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 192.168.24.168
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-CORE-MGMT ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-CORE-MGMT-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 2405:200:801:4600::258
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-CORE-MGMT ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-CORE-MGMT-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::25c
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-CORE-MGMT ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-CORE-MGMT-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-BEARER-ENB
+  rd 49.44.5.113:2
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network ::/0
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+!
+  neighbor 2405:200:801:4600::240
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-BEARER ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-BEARER-ENB-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::244
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-BEARER ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-BEARER-ENB-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-WIFI-CISCO
+  rd 49.44.5.113:4
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network 0.0.0.0/0
+   redistribute connected
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network ::/0
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+   aggregate-address 2405:200:812:945::/64
+!
+  neighbor 2405:200:801:4600::280
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-CISCO-WIFI ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-CISCO-WIFI-BL-N93k-IPv6-OUT in
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::284
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-CISCO-WIFI ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-CISCO-WIFI-BL-N93k-IPv6-OUT in
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-OSS-NOC-MGMT
+  rd 49.44.5.113:18
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  neighbor 192.168.24.184
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-RJIL-OSS-NOC-MGMT ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-OSS-NOC-MGMT-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 192.168.24.188
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-RJIL-OSS-NOC-MGMT ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-OSS-NOC-MGMT-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 2405:200:801:4600::268
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-RJIL-OSS-NOC-MGMT ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-OSS-NOC-MGMT-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::26c
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-OSS-NOC-MGMT ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-OSS-NOC-MGMT-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-SIGNALING-ENB
+  rd 49.44.5.113:1
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network ::/0
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+!
+  neighbor 2405:200:801:4600::238
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-SIGNALING ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-SIGNALING-ENB-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::23c
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-SIGNALING ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-SIGNALING-ENB-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-IMS-BEARER-LTE
+  rd 49.44.5.113:11
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  neighbor 192.168.24.174
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-BEARER ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-IMS-BEARER-LTE-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 192.168.24.178
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-BEARER ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-IMS-BEARER-LTE-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 2405:200:801:4600::260
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-BEARER ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-IMS-BEARER-LTE-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::264
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-BEARER ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-IMS-BEARER-LTE-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-OCS-CONNETIVITY
+  rd 49.44.5.113:67
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   redistribute connected
+   redistribute static
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+!
+  neighbor 192.168.24.216
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-RJIL-OCS-CONNETIVITY ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-OCS-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 192.168.24.220
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-RJIL-OCS-CONNETIVITY ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-OCS-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 2405:200:801:4600::288
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-RJIL-OCS-CONNETIVITY ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-OCS-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::28c
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-RJIL-OCS-CONNETIVITY ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-OCS-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-SUBSCRIBER-UDPR
+  rd 49.44.5.113:27
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  neighbor 192.168.24.194
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-RJIL-SUBSCRIBER-UDPR ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-SUBSCRIBER-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 192.168.24.198
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-RJIL-SUBSCRIBER-UDPR ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-SUBSCRIBER-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 2405:200:801:4600::270
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-RJIL-SUBSCRIBER-UDPR VOICE ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-SUBSCRIBER-VOICE-BL-N93k-IPv6-OUT out
+!
+  neighbor 2405:200:801:4600::274
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-RJIL-SUBSCRIBER-UDPR VOICE ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-SUBSCRIBER-VOICE-BL-N93k-IPv6-OUT out
+!
+ vrf RJIL-WLS-CORE-SIGNALING
+  rd 49.44.5.113:7
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  neighbor 192.168.24.154
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-WLS-CORE-SIGNALING ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-WLS-CORE-SIGNALING-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 192.168.24.158
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-WLS-CORE-SIGNALING ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-WLS-CORE-SIGNALING-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 2405:200:801:4600::250
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB01-VRF-WLS-CORE-SIGNALING ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-WLS-CORE-SIGNALING-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::254
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   bfd fast-detect
+   description *** PEERS WITH UDPRULTCCESB51-VRF-WLS-CORE-SIGNALING ***
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-WLS-CORE-SIGNALING-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+ vrf RJIL-VRF-ILD-ROAMING-EMERGENCY
+  rd 49.44.5.113:108
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+  neighbor 172.17.66.90
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   description *** PEERS WITH UDPRULTCCESB01-RJIL-VRF-ILD-ROAMING-EMERGENCY***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-ILD-ROAMING-EMERGENCY-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 172.17.66.92
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv4
+   description *** PEERS WITH UDPRULTCCESB51-RJIL-VRF-ILD-ROAMING-EMERGENCY ***
+   address-family ipv4 unicast
+    route-policy RJIL-VRF-ILD-ROAMING-EMERGENCY-BL-N93k-IPv4-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv4
+!
+  neighbor 2405:200:801:4600::2d2
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   description # Peers with UDPRULTCCESB01-RJIL-VRF-ILD-ROAMING-EMERGENCY #
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-ILD-ROAMING-EMERGENCY-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+  neighbor 2405:200:801:4600::2d4
+   use neighbor-group RJIL-BL-N93k-EBGP-GRP-IPv6
+   description # Peers with UDPRULTCCESB51-RJIL-VRF-ILD-ROAMING-EMERGENCY #
+   address-family ipv6 unicast
+    route-policy RJIL-VRF-ILD-ROAMING-EMERGENCY-BL-N93k-IPv6-OUT out
+    default-originate route-policy DEFAULT-ORIGINATE-IPv6
+!
+
+RP/0/RSP0/CPU0:UDPRULTCCSR001#
+RP/0/RSP0/CPU0:UDPRULTCCSR001#Sh run bfd
+
+Tue Oct 13 19:10:21.907 IST
+bfd
+ multipath include location 0/7/CPU0
+!
+
+RP/0/RSP0/CPU0:UDPRULTCCSR001#
+RP/0/RSP0/CPU0:UDPRULTCCSR001#Show bgp all all sum
+
+Tue Oct 13 19:10:22.284 IST
+
+Address Family: VPNv4 Unicast
+-----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0x0   RD version: 0
+BGP main routing table version 30982805
+BGP NSR Initial initsync version 11 (Reached)
+BGP NSR/ISSU Sync-Group versions 30982805/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker        30982805   30982805   30982805   30982805    30982805    30982805
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958331  636152 30982805    0    0    14w4d      61838
+49.44.2.4         0 55836 466688770  636605 30982805    0    0    13w0d      61838
+
+
+Address Family: VPNv6 Unicast
+-----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0x0   RD version: 0
+BGP main routing table version 271541538
+BGP NSR Initial initsync version 14 (Reached)
+BGP NSR/ISSU Sync-Group versions 271541531/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker       271541538  271541538  271541538  271541538   271541531   271541531
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958331  636152 271541530    0    0    14w4d     166497
+49.44.2.4         0 55836 466688770  636605 271541530    0    0    13w0d     166497
+
+
+Address Family: IPv4 Labeled-unicast
+------------------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 311798459
+BGP main routing table version 311798459
+BGP NSR Initial initsync version 8 (Reached)
+BGP NSR/ISSU Sync-Group versions 311798459/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker       311798459  311798459  311798459  311798459   311798459   311798459
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958331  636152 311798459    0    0    14w4d     193783
+49.44.2.4         0 55836 466688771  636605 311798459    0    0    13w0d     193783
+
+
+Address Family: IPv6 Labeled-unicast
+------------------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0800000   RD version: 9959374
+BGP main routing table version 9959374
+BGP NSR Initial initsync version 7 (Reached)
+BGP NSR/ISSU Sync-Group versions 9959374/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker         9959374    9959374    9959374    9959374     9959374     9959374
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.138       0 55836 74361685  625753  9959374    0    0    2d17h      27749
+49.44.2.3         0 55836 78845602  625764  9959374    0    0    1y09w      27914
+
+
+Address Family: IPv4 Unicast
+----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 311798459
+BGP main routing table version 311798459
+BGP NSR Initial initsync version 8 (Reached)
+BGP NSR/ISSU Sync-Group versions 311798459/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker       311798459  311798459  311798459  311798459   311798459   311798459
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.138       0 55836 74361685  625753 311798459    0    0    2d17h       9657
+49.44.2.3         0 55836 78845602  625764 311798459    0    0    1y09w       9858
+172.16.8.210      0 64539 1456554 1244998 311798459    0    0     7w4d          2
+172.16.8.218      0 64539 1456898 1245243 311798459    0    0     7w4d          2
+172.17.120.90     0 64539  483901  413607 311798459    0    0    19w0d          1
+192.168.24.128    0 65000  624818 1248215 311798459    0    0     7w4d         10
+192.168.24.132    0 65000  637427 1248301 311798459    0    0     5w5d         10
+
+
+Address Family: IPv4 MDT
+------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 8648
+BGP main routing table version 8648
+BGP NSR Initial initsync version 1 (Reached)
+BGP NSR/ISSU Sync-Group versions 8648/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker            8648       8648       8648       8648        8648        8648
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958332  636152     8648    0    0    14w4d         21
+49.44.2.4         0 55836 466688771  636605     8648    0    0    13w0d         22
+
+
+Address Family: RT Constraint
+-----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 3417888
+BGP main routing table version 3417888
+BGP NSR Initial initsync version 23 (Reached)
+BGP NSR/ISSU Sync-Group versions 3417888/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker         3417888    3417888    3417888    3417888     3417888     3417888
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958333  636152  3417888    0    0    14w4d      34101
+49.44.2.4         0 55836 466688771  636605  3417888    0    0    13w0d      34101
+
+
+Address Family: IPv6 Unicast
+----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0800000   RD version: 9959374
+BGP main routing table version 9959374
+BGP NSR Initial initsync version 7 (Reached)
+BGP NSR/ISSU Sync-Group versions 9959374/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker         9959374    9959374    9959374    9959374     9959374     9959374
+
+Some configured eBGP neighbors (under default or non-default vrfs)
+do not have both inbound and outbound policies configured for IPv6 Unicast
+address family. These neighbors will default to sending and/or

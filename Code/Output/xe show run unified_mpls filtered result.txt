@@ -1,0 +1,38 @@
+!
+interface Loopback0
+ description ## LCKNMHLRPAR002-CORE-MGMT-LPBK ##
+ ip address 172.16.64.25 255.255.255.255
+ no ip redirects
+ no ip proxy-arp
+ ipv6 address 2405:200:201:900:172:16:64:25/128
+ no ipv6 redirects
+ no ipv6 unreachables
+ isis tag 1000
+!
+interface TenGigabitEthernet0/4/8
+ description # TO-LCKNPBKAAAR001-TenGE0/1/0/8-Fiber #
+ mtu 9216
+ ip address 172.16.203.70 255.255.255.254
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip router isis CORE
+ ip pim sparse-mode
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ cdp enable
+ ipv6 address 2405:200:109:0:172:16:203:70/127
+ ipv6 enable
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis CORE
+ mpls ip
+ mpls ldp igp sync delay 25
+ synchronous mode
+ bfd template AG1-AG3AG2
+ clns mtu 9200
+ isis circuit-type level-1
+ isis network point-to-point 
+ isis bfd
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT

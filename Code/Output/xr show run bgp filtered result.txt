@@ -1,0 +1,330 @@
+!
+ vrf RJIL-IME
+  rd 49.44.5.113:6
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+ vrf RJIL-IP-MGMT
+  rd 49.44.5.113:29
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+ vrf RJIL-OAM-ENB
+  rd 49.44.5.113:3
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network ::/0
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+!
+ vrf RJIL-CORE-MGMT
+  rd 49.44.5.113:9
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+ vrf RJIL-BEARER-ENB
+  rd 49.44.5.113:2
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network ::/0
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+!
+ vrf RJIL-WIFI-CISCO
+  rd 49.44.5.113:4
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network 0.0.0.0/0
+   redistribute connected
+!
+ vrf RJIL-OSS-NOC-MGMT
+  rd 49.44.5.113:18
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+ vrf RJIL-SIGNALING-ENB
+  rd 49.44.5.113:1
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv6 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   network ::/0
+   aggregate-address 2405:200:111::/48
+   aggregate-address 2405:200:126::/48
+   aggregate-address 2405:200:130::/48
+   aggregate-address 2405:200:134::/48
+!
+ vrf RJIL-IMS-BEARER-LTE
+  rd 49.44.5.113:11
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+ vrf RJIL-OCS-CONNETIVITY
+  rd 49.44.5.113:67
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   redistribute connected
+   redistribute static
+!
+ vrf RJIL-SUBSCRIBER-UDPR
+  rd 49.44.5.113:27
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+ vrf RJIL-WLS-CORE-SIGNALING
+  rd 49.44.5.113:7
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+   redistribute connected
+!
+ vrf RJIL-VRF-ILD-ROAMING-EMERGENCY
+  rd 49.44.5.113:108
+  bfd minimum-interval 50
+  bfd multiplier 3
+  address-family ipv4 unicast
+   maximum-paths ebgp 2
+   maximum-paths ibgp 2
+!
+
+RP/0/RSP0/CPU0:UDPRULTCCSR001#
+RP/0/RSP0/CPU0:UDPRULTCCSR001#Show bgp all all sum
+
+Tue Oct 13 19:10:22.284 IST
+
+Address Family: VPNv4 Unicast
+-----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0x0   RD version: 0
+BGP main routing table version 30982805
+BGP NSR Initial initsync version 11 (Reached)
+BGP NSR/ISSU Sync-Group versions 30982805/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker        30982805   30982805   30982805   30982805    30982805    30982805
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958331  636152 30982805    0    0    14w4d      61838
+49.44.2.4         0 55836 466688770  636605 30982805    0    0    13w0d      61838
+
+
+Address Family: VPNv6 Unicast
+-----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0x0   RD version: 0
+BGP main routing table version 271541538
+BGP NSR Initial initsync version 14 (Reached)
+BGP NSR/ISSU Sync-Group versions 271541531/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker       271541538  271541538  271541538  271541538   271541531   271541531
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958331  636152 271541530    0    0    14w4d     166497
+49.44.2.4         0 55836 466688770  636605 271541530    0    0    13w0d     166497
+
+
+Address Family: IPv4 Labeled-unicast
+------------------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 311798459
+BGP main routing table version 311798459
+BGP NSR Initial initsync version 8 (Reached)
+BGP NSR/ISSU Sync-Group versions 311798459/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker       311798459  311798459  311798459  311798459   311798459   311798459
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958331  636152 311798459    0    0    14w4d     193783
+49.44.2.4         0 55836 466688771  636605 311798459    0    0    13w0d     193783
+
+
+Address Family: IPv6 Labeled-unicast
+------------------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0800000   RD version: 9959374
+BGP main routing table version 9959374
+BGP NSR Initial initsync version 7 (Reached)
+BGP NSR/ISSU Sync-Group versions 9959374/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker         9959374    9959374    9959374    9959374     9959374     9959374
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.138       0 55836 74361685  625753  9959374    0    0    2d17h      27749
+49.44.2.3         0 55836 78845602  625764  9959374    0    0    1y09w      27914
+
+
+Address Family: IPv4 Unicast
+----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 311798459
+BGP main routing table version 311798459
+BGP NSR Initial initsync version 8 (Reached)
+BGP NSR/ISSU Sync-Group versions 311798459/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker       311798459  311798459  311798459  311798459   311798459   311798459
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.138       0 55836 74361685  625753 311798459    0    0    2d17h       9657
+49.44.2.3         0 55836 78845602  625764 311798459    0    0    1y09w       9858
+172.16.8.210      0 64539 1456554 1244998 311798459    0    0     7w4d          2
+172.16.8.218      0 64539 1456898 1245243 311798459    0    0     7w4d          2
+172.17.120.90     0 64539  483901  413607 311798459    0    0    19w0d          1
+192.168.24.128    0 65000  624818 1248215 311798459    0    0     7w4d         10
+192.168.24.132    0 65000  637427 1248301 311798459    0    0     5w5d         10
+
+
+Address Family: IPv4 MDT
+------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 8648
+BGP main routing table version 8648
+BGP NSR Initial initsync version 1 (Reached)
+BGP NSR/ISSU Sync-Group versions 8648/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker            8648       8648       8648       8648        8648        8648
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958332  636152     8648    0    0    14w4d         21
+49.44.2.4         0 55836 466688771  636605     8648    0    0    13w0d         22
+
+
+Address Family: RT Constraint
+-----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 3417888
+BGP main routing table version 3417888
+BGP NSR Initial initsync version 23 (Reached)
+BGP NSR/ISSU Sync-Group versions 3417888/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker         3417888    3417888    3417888    3417888     3417888     3417888
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+49.44.0.137       0 55836 411958333  636152  3417888    0    0    14w4d      34101
+49.44.2.4         0 55836 466688771  636605  3417888    0    0    13w0d      34101
+
+
+Address Family: IPv6 Unicast
+----------------------------
+
+BGP router identifier 49.44.5.113, local AS number 55836
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0800000   RD version: 9959374
+BGP main routing table version 9959374
+BGP NSR Initial initsync version 7 (Reached)
+BGP NSR/ISSU Sync-Group versions 9959374/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker         9959374    9959374    9959374    9959374     9959374     9959374
+
+Some configured eBGP neighbors (under default or non-default vrfs)
+do not have both inbound and outbound policies configured for IPv6 Unicast
+address family. These neighbors will default to sending and/or
