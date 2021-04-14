@@ -185,8 +185,7 @@ def exbgp(lines, result) -> list:
         if re.search("!", lines[i]):
             scount = i
         for sparam in slist:
-            if re.search(sparam, lines[i]) and not re.search("bgp-community", lines[i]) and not re.search("snmp",
-                                                                                                          lines[i]):
+            if re.search(sparam, lines[i]) and not re.search("bgp-community", lines[i]) and not re.search("snmp", lines[i]):
                 tresult = "\n!"
                 for j in range(scount + 1, dhcount):
                     if re.search("!", lines[j]):
@@ -329,29 +328,23 @@ def rexmpls(lines) -> list:
     return result
 
 
-def exvrfint(lines, result) -> list:
-    scount = 0
-    shcount, dhcount = exreq(filename, "show running-config")
-    vlist = []
-    for ele in result:
-        if re.search("vrf forwarding", ele):
-            temp = ele.split(" ")
-            i = temp.index("vrf")
-            vlist.append("vrf definition " + temp[i + 2])
-    for i in range(shcount, dhcount):
-        if re.search("!", lines[i]):
-            scount = i
+def exvrfint(lines, res):
+    scount=0
+    shcount,dhcount=exreq(lines,"show running-config")
+    vlist=["vrf definition"]
+    for i in range(shcount,dhcount):
+        if re.search("!",lines[i]):
+            scount=i
         for sparam in vlist:
             if re.search(sparam, lines[i]):
-                tresult = "!\n"
-                for j in range(scount + 1, dhcount):
+                tresult="!\n"
+                for j in range(scount+1,dhcount):
                     if re.search("!", lines[j]):
                         break
-                    tresult += lines[j]
-                if tresult not in result and not re.search("MGMT", tresult) and not re.search("mgmt", tresult):
-                    result.append(tresult)
-    return result
-
+                    tresult+=lines[j]
+                if tresult not in res and re.search("route-target",tresult) and re.search("rd",tresult):
+                    res.append(tresult)       
+    return res
 
 def ospf_json(lines) -> list:
     i = 10
