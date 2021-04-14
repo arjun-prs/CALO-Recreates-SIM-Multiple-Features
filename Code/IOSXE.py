@@ -176,6 +176,86 @@ def exbgp(lines, result) -> list:
     return result
 
 
+def exospf(lines) -> list:
+    result = []
+    scount = 0
+    shcount, dhcount = exreq(lines, "show running-config")
+    slist = ["ospf"]
+    for i in range(shcount, dhcount):
+        if re.search("!", lines[i]):
+            scount = i
+        for sparam in slist:
+            if re.search(sparam, lines[i]) and not re.search("snmp", lines[i]):
+                tresult = "!\n"
+                for j in range(scount + 1, dhcount):
+                    if re.search("!", lines[j]):
+                        break
+                    tresult += lines[j]
+                if tresult not in result:
+                    result.append(tresult)
+    return result
+
+
+def exisis(lines) -> list:
+    result = []
+    scount = 0
+    shcount, dhcount = exreq(lines, "show running-config")
+    slist = ["isis"]
+    for i in range(shcount, dhcount):
+        if re.search("!", lines[i]):
+            scount = i
+        for sparam in slist:
+            if re.search(sparam, lines[i]) and not re.search("snmp", lines[i]):
+                tresult = "!\n"
+                for j in range(scount + 1, dhcount):
+                    if re.search("!", lines[j]):
+                        break
+                    tresult += lines[j]
+                if tresult not in result:
+                    result.append(tresult)
+    return result
+
+
+def exeigrp(lines) -> list:
+    result = []
+    scount = 0
+    shcount, dhcount = exreq(lines, "show running-config")
+    slist = ["eigrp"]
+    for i in range(shcount, dhcount):
+        if re.search("!", lines[i]):
+            scount = i
+        for sparam in slist:
+            if re.search(sparam, lines[i]) and not re.search("snmp", lines[i]):
+                tresult = "!\n"
+                for j in range(scount + 1, dhcount):
+                    if re.search("!", lines[j]):
+                        break
+                    tresult += lines[j]
+                if tresult not in result:
+                    result.append(tresult)
+    return result
+
+
+def exstatic(lines) -> list:
+    result = []
+    scount = 0
+    shcount, dhcount = exreq(lines, "show running-config")
+    slist = ["ip route"]
+    for i in range(shcount, dhcount):
+        if re.search("!", lines[i]):
+            scount = i
+        for sparam in slist:
+            if re.search(sparam, lines[i]) and not re.search("snmp", lines[i]):
+                tresult = "!\n"
+                for j in range(scount + 1, dhcount):
+                    if re.search("!", lines[j]):
+                        break
+                    tresult += lines[j]
+                if tresult not in result:
+                    result.append(tresult)
+    return result
+
+
 def exigp(lines) -> list:
     result = []
     scount = 0
@@ -343,13 +423,22 @@ while u == "y":
     user_input1 = input("Do you need to filter running configurartion or ip route configuration (run/route): ")
     if user_input1 == "run":
         user_input1 = input("Do you need IOSXR or IOSXE configuration filter (xe/xr): ")
-        user_input2 = input(
-            "Which running configuration do you need: (igp/mpls/unified_mpls/multicast) ")
+        user_input2 = input("Which running configuration do you need: (igp/eigrp/static/ospf/isis/bgp/mpls/unified_mpls/multicast) ")
         filename = 'Input\\ios'+user_input1+' config.txt'
         f = open(filename, 'r')
         lines = f.readlines()
         if user_input2 == "igp":
             result = exigp(lines)
+        elif user_input2 == "eigrp":
+            result = exeigrp(lines)
+        elif user_input2 == "ospf":
+            result = exospf(lines)
+        elif user_input2 == "isis":
+            result = exisis(lines)
+        elif user_input2 == "bgp":
+            result = exbgp(lines)
+        elif user_input2 == "static":
+            result = exstatic(lines)
         elif user_input2 == "mpls":
             result = rexmpls(lines)
         elif user_input2 == "unified_mpls":
