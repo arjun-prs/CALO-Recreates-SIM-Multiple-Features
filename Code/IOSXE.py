@@ -465,26 +465,25 @@ while u == "y":
         else:
             result.append("Invalid Input")
             flag =False
-        if flag == True and user_input2 != "multicast" and user_input1 != "route":
+        if flag == True and user_input2 != "multicast" and user_input0 == "run":
             pretty_result = prettify(result)
             print(*pretty_result, sep="\n")
             print("Size of filtered Output: ", end='')
             print(len(result))
+            user_input3 = input("Do you want to filter the result further (y/n): ")
+            if user_input3 == "y":
+                keyword = input("Please enter keywords to include in space seperated format: ")
+                filtered_result = resfilterin(result, keyword.split())
+                keyword = input("Please enter keywords to exclude in space seperated format: ")
+                filtered_result = resfilterout(filtered_result, keyword.split())
+                print(*filtered_result, sep="\n")
+                print("Size of further filtered Output: ", end='')
+                print(len(filtered_result))
+                with open("Output\\filtered result.txt", 'w+') as fout:
+                    for lines in filtered_result:
+                        fout.write(lines)
         else:
-            print(*result, sep="\n")
-    if user_input0 == "run":
-        user_input3 = input("Do you want to filter the result further (y/n): ")
-        if user_input3 == "y":
-            keyword = input("Please enter keywords to include in space seperated format: ")
-            filtered_result = resfilterin(result, keyword.split())
-            keyword = input("Please enter keywords to exclude in space seperated format: ")
-            filtered_result = resfilterout(filtered_result, keyword.split())
-            print(*filtered_result, sep="\n")
-            print("Size of further filtered Output: ", end='')
-            print(len(filtered_result))
-            with open("Output\\filtered result.txt", 'w+') as fout:
-                for lines in filtered_result:
-                    fout.write(lines)
+            print(*result, sep="\n")   
     u = input("Do you want to continue (y/n): ")
 f.close()
 fout.close()
