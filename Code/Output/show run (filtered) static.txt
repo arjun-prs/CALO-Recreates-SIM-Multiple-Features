@@ -1,0 +1,536 @@
+!
+interface TenGigabitEthernet0/4/8
+ description # TO-LCKNPBKAAAR001-TenGE0/1/0/8-Fiber #
+ mtu 9216
+ ip address 172.16.203.70 255.255.255.254
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip router isis CORE
+ ip pim sparse-mode
+ load-interval 30
+ carrier-delay up 2
+ carrier-delay down msec 0
+ cdp enable
+ ipv6 address 2405:200:109:0:172:16:203:70/127
+ ipv6 enable
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis CORE
+ mpls ip
+ mpls ldp igp sync delay 25
+ synchronous mode
+ bfd template AG1-AG3AG2
+ clns mtu 9200
+ isis circuit-type level-1
+ isis network point-to-point 
+ isis bfd
+ service-policy input RJIL-QOS-NTWK-NNI-IN-PARENT
+!
+interface BDI342
+ description # TO-LCKNFZLGESR004-TenGigabitEthernet0/0/10-Fiber #
+ ip address 10.67.117.153 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:67:117:153/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI343
+ description # TO-LCKNRHMNESR004-TenGigabitEthernet0/0/10-Fiber #
+ ip address 10.67.126.215 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:67:126:215/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI344
+ description # TO-LCKNMHLRESR005-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.28.79.142 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:28:79:142/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls mtu 9216
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI348
+ description # TO-LCKNMHLRESR001-xe-0/3/0-Fiber #
+ ip address 10.67.116.63 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:67:116:63/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI351
+ description # TO-LCKNMHLRESR004-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.20.53.147 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:20:53:147/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI352
+ description # TO-LCKNPRTGESR002-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.20.59.215 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:20:59:215/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI353
+ description # TO-LCKNMHLRESR002-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.20.25.115 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:20:25:115/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI354
+ description # TO-LCKNMDYAESR001-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.20.1.114 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:20:1:114/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI355
+ description # TO-LCKNGHILESR002-Xe-0/3/0-Fiber #
+ ip address 10.69.2.245 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:69:2:245/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls mtu 9216
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI357
+ description # TO-LCKNMBRKESR002-Xe-0/3/0-Fiber #
+ ip address 10.65.246.31 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:65:246:31/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI361
+ description # TO-LCKNKHRGESR001-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.31.90.143 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:31:90:143/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI362
+ description # TO-LCKNAZEZESR007-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.27.66.5 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:27:66:5/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI363
+ description # TO-LCKNPRTNESR005-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.20.52.161 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:20:52:161/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI364
+ description # TO-LCKNMBRKESR004-GigabitEthernet0/0/22-Fiber #
+ ip address 172.27.230.216 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:27:230:216/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI365
+ description # TO-LCKNSHPMESR003-Xe-0/3/0-Fiber #
+ ip address 10.65.197.215 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:65:197:215/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI368
+ description # TO-LCKNBTULESR002-TenGigabitEthernet0/0/10-Fiber #
+ ip address 10.80.19.141 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:10:80:19:141/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls mtu 9216
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI431
+ description # TO-LCKNMHLRPAR001-TenGE0/1/0-Fiber #
+ ip address 172.16.200.89 255.255.255.254
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis CORE
+ ip pim sparse-mode
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:16:200:89/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 pim hello-interval 10
+ ipv6 router isis CORE
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-1
+ isis network point-to-point 
+ isis bfd
+!
+interface BDI432
+ description # TO-LCKNMHLRPAR001-TenGE0/1/0-Fiber #
+ ip address 172.20.2.190 255.255.255.254
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ ipv6 address 2405:200:109:0:172:20:2:190/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ ipv6 router isis RAN
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis bfd
+!
+router isis CORE
+ net 49.0002.1720.1606.4025.00
+ is-type level-1
+ authentication mode md5 level-1
+ authentication key-chain ISIS-KEY level-1
+ metric-style wide
+ fast-flood 10
+ ip route priority high tag 5000
+ set-overload-bit on-startup 360
+ max-lsp-lifetime 65535
+ lsp-refresh-interval 65000
+ spf-interval 5 50 200
+ prc-interval 5 50 200
+ lsp-gen-interval 5 50 200
+ no hello padding
+ log-adjacency-changes
+ nsf cisco
+ fast-reroute per-prefix level-1 route-map RJIL-INFRA-RLFA-IPv4
+ fast-reroute remote-lfa level-1 mpls-ldp
+ passive-interface Loopback0
+!
+router isis RAN
+ net 49.0003.1720.2309.6025.00
+ is-type level-2-only
+ authentication mode md5 level-2
+ authentication key-chain ISIS-KEY level-2
+ metric-style wide
+ fast-flood 10
+ ip route priority high tag 10
+ set-overload-bit on-startup 180 suppress external
+ max-lsp-lifetime 65535
+ lsp-refresh-interval 65000
+ spf-interval 5 50 200
+ prc-interval 5 50 200
+ lsp-gen-interval 5 50 200
+ no hello padding
+ log-adjacency-changes
+ nsf cisco
+ fast-reroute per-prefix level-2 all
+ fast-reroute remote-lfa level-2 mpls-ldp
+ microloop avoidance disable
+ redistribute connected route-map MPLS-LOOPBACK-IPv4
+ redistribute isis CORE ip route-map RJIL-ISISCORE2RAN-IPv4
+ redistribute bgp 55836 route-map RJIL-BGP2ISIS-IPv4
+ passive-interface Loopback100
+ distribute-list route-map RJIL-BGP2ISIS-REDIST-IPV4 in
+!
+ip extcommunity-list standard AG1-CSS-MGMT-MESH permit rt 64820:99
+ip extcommunity-list standard RJIL-IME-IP-MGMT-RT permit rt 64760:124
+ip extcommunity-list standard RJIL-IME-IP-MGMT-RT permit rt 64820:124
+ip extcommunity-list standard RJIL-IME-IP-MGMT-RT permit rt 64820:312
+ip bgp-community new-format
+ip community-list expanded BGP_TO_RAN_SAR_COMM permit _64603:1.._
+ip community-list expanded RJIL-PEER-CSS-IPv4-OUT permit _64610:1.._
+ip community-list expanded RJIL-PEER-AG2-IPv6-OUT permit _64600:124_
+ip community-list expanded RJIL-PEER-AG3-IPv4-OUT permit _64600:124_
+ip community-list expanded RJIL-PEER-AG2-IPv4-OUT permit _64611:124_
+ip community-list expanded RJIL-PEER-CSS-IPv6-OUT permit _64610:1.._
+ip community-list expanded BGP_TO_RAN_DCWAN_COMM permit _64604:1.._
+ip community-list expanded RJIL-PEER-CSS-MCAST-IPv6-OUT permit _64631:1.._
+ip community-list expanded BGP_TO_RAN_IBR_COMM permit _55836:1..00_
+ip community-list expanded RJIL-PEER-ECR-IPv4-OUT permit _55836:1..00_
+ip ftp source-interface Loopback999
+no ip http server
+no ip http ctc authentication
+ip http authentication local
+ip http secure-server
+ip http secure-active-session-modules mylist
+ip http timeout-policy idle 600 life 14400 requests 25 
+ip http session-module-list mylist IOX_Server,DISTRIB
+ip tftp source-interface Loopback999
+ip pim ssm range MCAST-SSM-IPv4
+ip route 172.29.7.24 255.255.255.255 BDI431 172.16.200.88
+ip route vrf RJIL-VRF-ENTERPRISE-ILL-SPOKE 115.241.165.248 255.255.255.248 136.232.174.6

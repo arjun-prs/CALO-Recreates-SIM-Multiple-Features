@@ -63,7 +63,7 @@ def resfilterout(result, keyword) -> list:
         for ele in keyword:
             if re.search(ele, lines):
                 flag = False
-        if flag:
+        if flag and lines not in master_result:
             master_result.append(lines)
     return master_result
 
