@@ -1,7 +1,7 @@
 import re
 import json
 
-print("""calo.py""")
+print("""\ncalo.py""")
 __copyright__ = "Copyright (c) 2018-2021 Cisco Systems. All rights reserved."
 print("\n" + __copyright__)
 
@@ -118,7 +118,7 @@ def exumplsbgp(lines, result) -> list:
 def exmplsbgp(lines) -> list:
     count = 0
     result = []
-    slist = ["neighbour", "session", "community", ]
+    slist = ["neighbour", "session", "community"]
     for line in lines:
         count = count + 1
         for sparam in slist:
