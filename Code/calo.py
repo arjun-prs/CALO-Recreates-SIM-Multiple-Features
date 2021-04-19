@@ -1,5 +1,8 @@
 import re
 import json
+import paramiko
+import telnetlib
+import time
 
 print("""\ncalo.py""")
 __copyright__ = "Copyright (c) 2018-2021 Cisco Systems. All rights reserved."
@@ -494,6 +497,34 @@ while u == "y":
             with open('Output\\' + user_input1 + ' show run ' + user_input2 + ' filtered result.txt', 'w+') as fout:
                 for lines in filtered_result:
                     fout.write(lines)
+        user_input4 = input("Do you want to push the configs via SSH/telnet onto a router (y/n): ")
+        if user_input4 == "y":
+            HOST = input("Enter the IP address of the router: ")
+            user = input("Enter your remote account username: ")
+            password = input("Enter your telnet/SSH password: ")
+            tn = telnetlib.Telnet(HOST)
+            tn.read_until(b"Username: ")
+            tn.write(user.encode('ascii') + b"\n")
+            #time.sleep(5)
+            if password:
+                tn.read_until(b"Password: ")
+                tn.write(password.encode('ascii') + b"\n")
+                #time.sleep(5)
+            tn.write(b"en\n")
+            tn.write(password.encode('ascii') + b"\n")
+            #time.sleep(5)
+            tn.write(b"terminal length 0\n")
+            tn.write(b"sh run\n")
+            time.sleep(10)
+            tn.write(b"conf ter\n")
+            if user_input3 == "y":
+                for i in filtered_result:
+                    print(i)
+                    push_config = i.split("\n")
+                    for j in push_config:
+                        tn.write(j.encode('ascii') + b"\n")
+            telnet_result = tn.read_very_eager().decode('ascii')
+            print(telnet_result, sep="\n")
     else:
         print(*result, sep="\n")   
     u = input("Do you want to continue (y/n): ")
