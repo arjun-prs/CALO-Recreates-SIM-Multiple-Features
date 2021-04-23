@@ -701,6 +701,121 @@ route-map RJIL-PEER-CSS-IPv6-OUT permit 10
  match community RJIL-PEER-CSS-IPv6-OUT
  set mpls-label
 !
+vrf definition RCOM-2GBTSSERV-SPOKE
+ description *** RCOM-2GBTSSERV-SPOKE ***
+ rd 172.16.64.25:22408
+ route-target export 64771:22408
+ route-target import 64771:32408
+!
+vrf definition RCOM-TDMoIPMGMT-SPOKE
+ description *** RCOM-TDMoIPMGMT-SPOKE ***
+ rd 172.16.64.25:22407
+ route-target export 64771:22407
+ route-target import 64771:32407
+!
+vrf definition RJIL-BEARER-ENB
+ description *** FOR BEARER LTE SERVICES ***
+ rd 172.16.64.25:2
+ route-target export 64730:124
+ route-target export 64740:24001
+ route-target import 64730:12401
+ route-target import 64740:24001
+ route-target import 64930:12401
+!
+vrf definition RJIL-ENT-CPE-MGMT
+ description *** ENTERPRISE CPE MGMT ***
+ rd 172.16.64.25:59
+ route-target export 65532:124
+ route-target import 65532:12401
+!
+vrf definition RJIL-ENT-RIL-PETRO-SPOKE
+ description *** RJIL-ENT-RIL-PETRO-SPOKE ***
+ rd 172.16.64.25:20125
+ route-target export 64771:22425
+ route-target import 64771:32425
+!
+vrf definition RJIL-ENT-RIL-RETAIL-SPOKE
+ description *** RJIL-ENT-RIL-RETAIL-SPOKE ***
+ rd 172.16.64.25:22828
+ route-target export 64771:22828
+ route-target import 64771:32828
+!
+vrf definition RJIL-IME
+ description *** FOR IME SERVICES ***
+ rd 172.16.64.25:6
+ route-target export 64760:124
+ route-target import 64760:12401
+ route-target import 64910:12401
+!
+vrf definition RJIL-INTERNET_VRF_INT_SPOKE
+ description *** ENTERPRISE ILL ***
+ rd 172.16.64.25:21
+ route-target export 64754:124
+ route-target export 64754:100
+ route-target import 64754:12401
+ route-target import 64754:10001
+!
+vrf definition RJIL-OAM-ENB
+ description *** FOR O&M LTE SERVICES ***
+ rd 172.16.64.25:3
+ route-target export 64720:124
+ route-target import 64720:12401
+ route-target import 64890:12401
+!
+vrf definition RJIL-SHPPL
+ description *** RJIL-SHPPL ***
+ rd 172.16.64.25:20020
+ route-target export 64771:30020
+ route-target import 64771:20020
+!
+vrf definition RJIL-SIGNALING-ENB
+ description *** FOR SIGNALLING LTE SERVICES ***
+ rd 172.16.64.25:1
+ route-target export 64710:124
+ route-target import 64710:12401
+ route-target import 64880:12401
+!
+vrf definition RJIL-VRF-ENTERPRISE-ILL-SPOKE
+ description *** ENTERPRISE ILL ***
+ rd 172.16.64.25:114
+ route-target export 65562:124
+ route-target import 65562:12401
+!
+vrf definition RJIL-VRF-SIP-TRUNKING
+ description *** RJIL-VRF-SIP-TRUNKING ***
+ rd 172.16.64.25:64
+ route-target export 64913:124
+ route-target import 64913:12401
+!
+vrf definition RJIL-WIFI-CISCO
+ description *** FOR CISCO WIFI SERVICES ***
+ rd 172.16.64.25:4
+ route-target export 64750:124
+ route-target import 64750:12401
+ route-target import 64920:12401
+!
+vrf definition RJIL_IT
+ description *** RJIL_IT ***
+ rd 172.16.64.25:10
+ route-target export 65535:11102
+ route-target import 65535:11102
+!
+vrf definition RJIL_JIO_CENTER-IN
+ description *** RJIL_JIO_CENTER ***
+ rd 172.16.64.25:11
+ route-target export 64771:30003
+ route-target import 64771:20003
+!
+vrf definition SC-sw-mgmt
+ description *** FOR SC l2 switch mgmt ***
+ rd 172.16.64.25:9
+ route-target export 64761:100
+ route-target export 64820:312
+ route-target export 64761:124
+ route-target import 64761:10001
+ route-target import 64820:31201
+ route-target import 64761:12401
+!
 interface GigabitEthernet0/3/1
  description # TO-LCKNBTULESR002-TenGigabitEthernet0/0/10-Fiber #
  mtu 9216

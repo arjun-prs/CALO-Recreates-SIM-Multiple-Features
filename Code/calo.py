@@ -194,7 +194,7 @@ def exbgp(lines, result) -> list:
                     if re.search("!", lines[j]):
                         break
                     tresult += lines[j]
-                if tresult not in result and not re.search("MGMT", tresult):
+                if tresult not in result:
                     result.append(tresult)
     return result
 
@@ -505,14 +505,11 @@ while u == "y":
             tn = telnetlib.Telnet(HOST)
             tn.read_until(b"Username: ")
             tn.write(user.encode('ascii') + b"\n")
-            #time.sleep(5)
             if password:
                 tn.read_until(b"Password: ")
                 tn.write(password.encode('ascii') + b"\n")
-                #time.sleep(5)
             tn.write(b"en\n")
             tn.write(password.encode('ascii') + b"\n")
-            #time.sleep(5)
             tn.write(b"terminal length 0\n")
             tn.write(b"sh run\n")
             time.sleep(10)
