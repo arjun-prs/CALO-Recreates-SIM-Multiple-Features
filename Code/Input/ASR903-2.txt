@@ -1,0 +1,314 @@
+Building configuration...
+
+Current configuration : 5415 bytes
+!
+! Last configuration change at 05:54:56 UTC Fri Apr 23 2021 by admin
+!
+version 16.9
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform issu reload interface-module sequence 0 1 2 3 4 5
+no platform punt-keepalive disable-kernel-core
+platform bfd-debug-trace 1
+!
+hostname ASR-903-2
+!
+boot-start-marker
+boot system bootflash:asr900rsp3-universalk9.16.09.05.SPA.bin
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no logging console
+enable password cisco!123
+!
+no aaa new-model
+!
+!
+no ip domain lookup
+ip domain name cisco.com
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+no license feature service-offload enable
+license udi pid ASR-903 sn FOX2317PM0V
+license boot level metroaggrservices
+no license smart enable
+!
+!
+sdm prefer disable_8k_efp 
+sdm prefer disable_portchannel_qos_multiple_active 
+sdm prefer no_efp_feat_ext 
+sdm prefer disable_l3vpn_cm 
+sdm prefer disable_copp 
+sdm prefer disable_match_inner_dscp 
+sdm prefer vpls_stats_disable 
+sdm prefer default 
+diagnostic bootup level minimal
+!
+!
+username admin password 0 cisco!123
+!
+redundancy
+ mode sso
+!
+!
+!
+!
+!
+controller wanphy 0/3/0
+!
+controller dwdm 0/3/0
+!
+controller wanphy 0/3/1
+!
+controller dwdm 0/3/1
+!
+controller wanphy 0/3/2
+!
+controller dwdm 0/3/2
+!
+controller wanphy 0/3/3
+!
+controller dwdm 0/3/3
+!
+controller wanphy 0/3/4
+!
+controller dwdm 0/3/4
+!
+controller wanphy 0/3/5
+!
+controller dwdm 0/3/5
+!
+controller wanphy 0/3/6
+!
+controller dwdm 0/3/6
+!
+controller wanphy 0/3/7
+!
+controller dwdm 0/3/7
+!
+!
+transceiver type all
+ monitoring
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 192.168.254.1 255.255.255.252
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/3
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/4
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/5
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/6
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/7
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface TenGigabitEthernet0/3/0
+ no ip address
+!
+interface TenGigabitEthernet0/3/1
+ no ip address
+!
+interface TenGigabitEthernet0/3/2
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet0/3/3
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet0/3/4
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet0/3/5
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet0/3/6
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet0/3/7
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ ip address 10.122.189.117 255.255.255.240
+ negotiation auto
+!
+interface BDI342
+ description # TO-LCKNFZLGESR004-TenGigabitEthernet0/0/10-Fiber #
+ ip address 10.67.117.153 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ shutdown
+ ipv6 address 2405:200:109:0:10:67:117:153/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ mpls ip
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+interface BDI344
+ description # TO-LCKNMHLRESR005-TenGigabitEthernet0/0/10-Fiber #
+ ip address 172.28.79.142 255.255.255.254
+ ip helper-address 10.70.48.21
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 9216
+ ip router isis RAN
+ load-interval 30
+ shutdown
+ ipv6 address 2405:200:109:0:172:28:79:142/127
+ ipv6 enable
+ ipv6 mtu 9216
+ no ipv6 redirects
+ no ipv6 unreachables
+ mpls ip
+ mpls mtu 9216
+ mpls ldp igp sync delay 25
+ bfd template AG1-AG1CSS
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis tag 20
+ isis bfd
+!
+router isis CORE
+ metric-style narrow
+!
+router isis RAN
+ net 49.0003.1720.2309.6025.00
+ is-type level-2-only
+ authentication mode md5 level-2
+ authentication key-chain ISIS-KEY level-2
+ metric-style wide
+ fast-flood 10
+ ip route priority high tag 10
+ set-overload-bit on-startup 180 suppress external
+ max-lsp-lifetime 65535
+ lsp-refresh-interval 65000
+ spf-interval 5 50 200
+ prc-interval 5 50 200
+ lsp-gen-interval 5 50 200
+ no hello padding
+ log-adjacency-changes
+ nsf cisco
+ fast-reroute per-prefix level-2 all
+ fast-reroute remote-lfa level-2 mpls-ldp
+ microloop avoidance disable
+ redistribute connected route-map MPLS-LOOPBACK-IPv4
+ redistribute isis CORE ip route-map RJIL-ISISCORE2RAN-IPv4
+ distribute-list route-map RJIL-BGP2ISIS-REDIST-IPV4 in
+!
+router bgp 65100
+ bgp log-neighbor-changes
+ neighbor 192.168.254.2 remote-as 65100
+!
+ip forward-protocol nd
+ip ssh version 2
+!
+ip ftp source-interface GigabitEthernet0
+ip ftp username calo
+ip ftp password calo
+no ip http server
+no ip http ctc authentication
+no ip http secure-server
+ip tftp source-interface GigabitEthernet0
+ip tftp blocksize 8192
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.122.189.113
+ip route vrf Mgmt-intf 10.122.157.250 255.255.255.255 10.122.189.113
+!
+logging alarm informational
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ password cisco!123
+ logging synchronous
+ login local
+ stopbits 1
+line vty 0 4
+ login local
+ transport input all
+!
+!
+!
+!
+!
+!
+end
