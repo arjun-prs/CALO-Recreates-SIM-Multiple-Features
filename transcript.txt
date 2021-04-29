@@ -1,0 +1,426 @@
+WEBVTT
+
+1
+00:00:02.579 --> 00:00:14.398
+Um, so the project name is category SIM. So, uh, the objective of this project is basically to recreate the customer quality and, uh, to find out.
+
+2
+00:00:14.398 --> 00:00:17.669
+The point of the errors in there configuration.
+
+3
+00:00:17.669 --> 00:00:22.469
+And for achieving that, we need to filter the, uh, particular protocols that.
+
+4
+00:00:22.469 --> 00:00:28.440
+And, uh, uh, finally, I think so, let us run this script to understand.
+
+5
+00:00:28.440 --> 00:00:34.500
+So, uh, yeah, ask to quotes for both.
+
+6
+00:00:34.500 --> 00:00:37.649
+Uh, and if I give unified.
+
+7
+00:00:37.649 --> 00:00:46.679
+It will ask the engineer to delete whether he wants to further or not. So.
+
+8
+00:00:46.679 --> 00:00:52.439
+Uh, if the engineer only ones, uh, 6 enabled interfaces, you can also give.
+
+9
+00:00:52.439 --> 00:01:04.140
+And so, uh, engineer once, uh, interfaces that enabled IV visits and but he doesn't want any interface that he can do this.
+
+10
+00:01:04.140 --> 00:01:08.640
+And, uh, he can also push take on my attendance on to that. So.
+
+11
+00:01:08.640 --> 00:01:12.000
+Let me just get the idea here.
+
+12
+00:01:15.750 --> 00:01:21.329
+Yeah, let me just take this for now.
+
+13
+00:01:21.329 --> 00:01:26.280
+At the name and Cisco, uh.
+
+14
+00:01:26.280 --> 00:01:31.230
+So just take a few moments to speak on.
+
+15
+00:01:31.230 --> 00:01:43.200
+Yeah, so after pushing the con, basically automatically show, uh, give a short and output. So, as you can see the name of this.
+
+16
+00:01:43.200 --> 00:01:50.040
+Is the same as the name of that so it is being think this might be so.
+
+17
+00:01:50.040 --> 00:01:59.549
+Let me just end this year and a very fluid. So in the filter, then you can see there are only 2 interfaces and both of them have I believe.
+
+18
+00:01:59.549 --> 00:02:04.290
+So, this interface also has, I believe, and, uh.
+
+19
+00:02:04.290 --> 00:02:09.689
+So this is how the filter that works and yeah.
+
+20
+00:02:09.689 --> 00:02:13.259
+So, let me just do the of this.
+
+21
+00:02:14.879 --> 00:02:22.740
+Now, I'm just putting line of 3131 as you can see, uh.
+
+22
+00:02:22.740 --> 00:02:27.120
+That is open the documentation here, so.
+
+23
+00:02:27.120 --> 00:02:30.960
+So, in this documentation, this is 9, 3, 1 and 9 3.
+
+24
+00:02:30.960 --> 00:02:36.990
+So these are the 2 options that we are using to establish a so.
+
+25
+00:02:36.990 --> 00:02:41.250
+That is correct.
+
+26
+00:02:43.110 --> 00:02:54.870
+Eva, yeah, so.
+
+27
+00:02:54.870 --> 00:02:59.879
+As you can see in the output, there are a lot of, uh, results. So.
+
+28
+00:02:59.879 --> 00:03:02.909
+Uh, the engineer can also choose to, uh.
+
+29
+00:03:02.909 --> 00:03:09.150
+See, there is a pretty output, so that, uh, testing, I think will be displayed at 1st and, uh.
+
+30
+00:03:09.150 --> 00:03:13.319
+The user can expand the interface as the required so.
+
+31
+00:03:13.319 --> 00:03:17.759
+Let me just 0.
+
+32
+00:03:17.759 --> 00:03:24.060
+I say, I say grand and before that, let me just see whether there are any conflicts already here.
+
+33
+00:03:56.610 --> 00:04:00.719
+Silence.
+
+34
+00:04:03.629 --> 00:04:07.560
+Yeah, so now this is not active on this so.
+
+35
+00:04:07.560 --> 00:04:11.129
+Uh, now, let us just put this.
+
+36
+00:04:11.129 --> 00:04:21.720
+So, in this page, it will ask for the IP address username and password. So this is this.
+
+37
+00:04:21.720 --> 00:04:25.110
+Is there an admin.
+
+38
+00:04:25.110 --> 00:04:25.860
+Password
+
+39
+00:04:40.345 --> 00:04:40.855
+meanwhile.
+
+40
+00:05:07.439 --> 00:05:10.649
+Both.
+
+41
+00:05:10.649 --> 00:05:17.428
+Now, the so now.
+
+42
+00:05:17.428 --> 00:05:20.848
+All those fun picks up pushed so.
+
+43
+00:05:24.329 --> 00:05:30.689
+So, after this, uh, let me just change the address and push it for a 9 of free to ask. So.
+
+44
+00:05:30.689 --> 00:05:35.759
+Afraid to have 107 so here, uh, we need to change the IP addresses.
+
+45
+00:05:35.759 --> 00:05:42.478
+So, it's not 02000 and, uh, the IP address would be a 2 1.
+
+46
+00:05:42.478 --> 00:05:47.249
+And the neighbor, uh, here would be to be.
+
+47
+00:05:48.389 --> 00:05:52.139
+So, now that is put it.
+
+48
+00:05:54.629 --> 00:06:08.069
+So now as you can see, um.
+
+49
+00:06:08.069 --> 00:06:15.869
+I changed the I paid to do for that 1 and a database has also been pointing. Kenneth has also been implemented. Yeah.
+
+50
+00:06:15.869 --> 00:06:19.468
+So this is all the conflict.
+
+51
+00:06:19.468 --> 00:06:28.288
+And, uh, this day, the entire customer quality can be recreated. And, uh, if required necessary interface status can also be made dynamic.
+
+52
+00:06:28.288 --> 00:06:32.428
+So this is the main purpose of the project.
+
+53
+00:06:32.428 --> 00:06:40.379
+And as we, uh, acquire VPN, so, uh, it will also puts the PPC ID.
+
+54
+00:06:40.379 --> 00:06:44.278
+There and, uh, there'll be a proposed theater.
+
+55
+00:06:44.278 --> 00:06:54.478
+So that can be viewed in the analytics. So I have visited this site once today. So that will also be shown when I'm not operations number of operations.
+
+56
+00:06:54.478 --> 00:07:01.528
+Everything before, and, uh, I save the conflict will also be visible here. So this is 1 of my conflict.
+
+57
+00:07:01.528 --> 00:07:06.988
+So, let me just open this. Yeah, so.
+
+58
+00:07:08.548 --> 00:07:15.899
+So, this can also be viewed for future reference. So this can also be used as some kind of documentation.
+
+59
+00:07:15.899 --> 00:07:21.838
+And, uh, the same thing can also be used in and that can also be further documents.
+
+60
+00:07:21.838 --> 00:07:27.509
+So, on the same conflict, uh, it is required to fill out a few, uh.
+
+61
+00:07:27.509 --> 00:07:33.509
+Keyword, for example, let me just fill out a basic and, uh, let me just, uh.
+
+62
+00:07:33.509 --> 00:07:37.798
+Yeah.
+
+63
+00:07:37.798 --> 00:07:44.668
+So, after this, if you only show me 6 enable interfaces, that does not have abbreviate. So.
+
+64
+00:07:44.668 --> 00:07:48.629
+This interface as enable and.
+
+65
+00:07:48.629 --> 00:07:51.689
+Yeah, so families will also be displayed.
+
+66
+00:07:51.689 --> 00:07:56.038
+So this is a custom filtering can be done. So.
+
+67
+00:07:56.038 --> 00:08:00.959
+Caveat can you just said about your, uh, and, uh.
+
+68
+00:08:02.939 --> 00:08:10.918
+Yeah, yeah.
+
+69
+00:08:10.918 --> 00:08:25.738
+So this is the also storing the database in normally, we are using Margaret to store the database. So the operations, which we can perform on this is to insert the database and to display the database and to connect the logs.
+
+70
+00:08:25.738 --> 00:08:35.668
+So haven't shown this, so this is the Ga that we have created. So I have sent it to the 65.
+
+71
+00:08:35.668 --> 00:08:39.359
+I I require so when I run it.
+
+72
+00:08:42.958 --> 00:08:45.989
+Yeah, this is out from the check on so.
+
+73
+00:08:45.989 --> 00:08:51.629
+Uh, this can be shown in vein.
+
+74
+00:08:51.629 --> 00:08:54.899
+So, see, if here if if I want to filter.
+
+75
+00:08:54.899 --> 00:08:58.558
+Some of the configurations and just check them.
+
+76
+00:08:59.668 --> 00:09:02.788
+So, I selected address from the.
+
+77
+00:09:02.788 --> 00:09:08.369
+And, uh, in the interface, so now I will save this.
+
+78
+00:09:09.479 --> 00:09:23.399
+Well.
+
+79
+00:10:38.458 --> 00:10:42.208
+Uh, can you do it? Uh, I just showed the database how it's done.
+
+80
+00:10:42.208 --> 00:10:52.318
+Yeah, sure. So, let me.
+
+81
+00:10:54.568 --> 00:11:01.019
+So, uh, I need to filter.
+
+82
+00:11:11.249 --> 00:11:14.489
+Yeah, so I'd be yeah.
+
+83
+00:11:14.489 --> 00:11:18.389
+Got the pretty and select some of the configurations like.
+
+84
+00:11:18.389 --> 00:11:21.509
+Give it a 0 Yeah. Okay.
+
+85
+00:11:22.558 --> 00:11:35.219
+Okay then save it. Yeah so so now, when we say, which require the restore studio in saved conflicts.
+
+86
+00:11:35.219 --> 00:11:38.639
+As the file name called.
+
+87
+00:11:38.639 --> 00:11:43.019
+So this will be stored. Um, so now.
+
+88
+00:11:44.219 --> 00:11:47.578
+Yeah, now you can see it, right? Yeah.
+
+89
+00:11:47.578 --> 00:11:55.708
+Yeah, so here in, uh, in the Mongo database, there's donya a collection is, uh.
+
+90
+00:11:55.708 --> 00:12:00.089
+Made like, see for audits and deal.
+
+91
+00:12:00.089 --> 00:12:03.839
+Uh, he has anecdotal.
+
+92
+00:12:03.839 --> 00:12:11.999
+This is the configuration that she wanted to save and this is saved in the molecules, which can be. So there can also be no duplications. Right? So.
+
+93
+00:12:11.999 --> 00:12:21.119
+No, yeah, duplicates also cannot be created. So whenever you send some configurations, it is 1st check. If the file is already present in it.
+
+94
+00:12:21.119 --> 00:12:24.869
+It's pressing then it will show you.
+
+95
+00:12:24.869 --> 00:12:32.999
+And store the database, and also the dogs will also be present. And like, how many times have you filtered out? Uh.
+
+96
+00:12:32.999 --> 00:12:36.089
+And, yeah.
+
+97
+00:12:36.089 --> 00:12:39.599
+See this 1 yeah.
+
+98
+00:12:41.129 --> 00:12:47.129
+So, yeah, so it is a completely integrated solution with, uh, properly functioning logs. So, uh.
+
+99
+00:12:47.129 --> 00:12:52.528
+The further implement that we plan on doing to this is, uh, so once we.
+
+100
+00:12:52.528 --> 00:13:04.649
+What on the project for that? So that is to use. So, what it does is it automatically figure out the interfaces so instead of us having to manually edit the interfaces.
+
+101
+00:13:04.649 --> 00:13:07.979
+It'll automatically detect North interface. Are there in our lab.
+
+102
+00:13:07.979 --> 00:13:12.269
+And actually, I'm automatically map the customer's to accordingly to that.
+
+103
+00:13:12.269 --> 00:13:18.509
+So that is 1 of the improvements and the 2nd implement is all these logs can also be displayed in a graphical format. So that it will be easier to understand.
+
+104
+00:13:18.509 --> 00:13:23.969
+So these are the, uh, 1 of the few things that we have planned to, uh, for that April on this project. So, yeah.
+
+105
+00:13:23.969 --> 00:13:28.019
+Uh, it's pretty much what we have done as a part of this project.
+
+106
+00:13:31.499 --> 00:13:32.609
+Thank you.
+
